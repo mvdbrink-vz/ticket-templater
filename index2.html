@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Template Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="banner">
+    <h1>Issue Template Generator</h1>
+</div>
+
+<div class="summary-bar">
+    <input type="text" id="summary-bar" readonly value="Priority || Customer || Access ID || Issue Type" />
+</div>
+
+<div class="top-bar">
+    <div>
+        <label for="issue-type">Select Issue Type:</label>
+        <select id="issue-type" required>
+            <option value="">-- Select --</option>
+            <option value="MultiWifi - Hinder">MultiWifi - Hinder</option>
+            <option value="MultiWifi - No Connection">MultiWifi - No Connection</option>
+            <option value="Telefonie - Feature Issues">Telephony - Feature Issues</option>
+            <option value="Telefonie - No in- or outgoing calls">Telephony - No In/Out Calls</option>
+            <option value="Telefonie - One way audio">Telephony - One Way Audio</option>
+            <option value="Telefonie - Quality issues">Telephony - Quality Issues</option>
+            <option value="Data - No Connection">Data - No Connection</option>
+            <option value="Data - Packetloss">Data - Packetloss</option>
+            <option value="Data - Performance Issue">Data - Performance Issue</option>
+            <option value="Data - Reachability IP">Data - Reachability IP</option>
+            <option value="Data - Speed Issues">Data - Speed Issues</option>
+        </select>
+    </div>
+    <div>
+        <label for="priority">Select Priority:</label>
+        <select id="priority" required>
+            <option value="">-- Select --</option>
+            <option value="P1">P1</option>
+            <option value="P2">P2</option>
+            <option value="P3">P3</option>
+            <option value="P4">P4</option>
+        </select>
+    </div>
+</div>
+
+<div class="container">
+    <div class="form-section">
+        <form id="template-form">
+            <div id="dynamic-fields">
+                <!-- Dynamic fields will be inserted here based on issue type -->
+            </div>
+            <button type="submit">Generate Template</button>
+        </form>
+    </div>
+    <div class="output-section">
+        <h2>Generated Template:</h2>
+        <div id="template-output"></div>
+        <div class="incident-summary" id="incident-summary">
+            <h3>Incident Summary:</h3>
+            <p id="summary-output"></p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2025 Your Company Name. All rights reserved.
+</footer>
+
+<script src="scripts.js" defer></script>
+</body>
+</html>
