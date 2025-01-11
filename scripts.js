@@ -309,11 +309,45 @@ form.addEventListener("submit", (e) => {
         spinner.remove(); // Remove spinner after 1 second
 
         let generatedTemplate = `Priority: ${priority}\n\n`;
-
+        
+        generatedTemplate += `--- Customer Details ---\n`;
         inputs.forEach(input => {
             const label = input.previousElementSibling.textContent;
             const value = input.value;
-            generatedTemplate += `${label} ${value}\n`;
+        
+            if (label.toLowerCase().includes('customer') || label.toLowerCase().includes('contact')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
+        });
+        
+        generatedTemplate += `\n--- Technical Details ---\n`;
+        inputs.forEach(input => {
+            const label = input.previousElementSibling.textContent;
+            const value = input.value;
+        
+            if (label.toLowerCase().includes('technical') || label.toLowerCase().includes('mac') || label.toLowerCase().includes('gateway')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
+        });
+        
+        generatedTemplate += `\n--- Incident Description ---\n`;
+        inputs.forEach(input => {
+            const label = input.previousElementSibling.textContent;
+            const value = input.value;
+        
+            if (label.toLowerCase().includes('issue') || label.toLowerCase().includes('impact')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
+        });
+        
+        generatedTemplate += `\n--- Additional Comments ---\n`;
+        inputs.forEach(input => {
+            const label = input.previousElementSibling.textContent;
+            const value = input.value;
+        
+            if (label.toLowerCase().includes('comments')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
         });
 
         templateOutput.textContent = generatedTemplate;
