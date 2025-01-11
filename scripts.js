@@ -232,6 +232,30 @@ function updateSummary() {
     summaryOutput.textContent = `${priority || "Priority"} || ${customer} || ${accessID || "Access ID"} || ${issueType || "Issue Type"}`;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("darkModeToggle");
+    const label = document.getElementById("darkModeLabel");
+
+    // Load dark mode preference
+    if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+        toggle.checked = true;
+        label.textContent = "Disable Dark Mode";
+    }
+
+    toggle.addEventListener("change", () => {
+        if (toggle.checked) {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+            label.textContent = "Disable Dark Mode";
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+            label.textContent = "Enable Dark Mode";
+        }
+    });
+});
+
 document.getElementById("issue-type").addEventListener("change", function () {
     const issueType = this.value;
     dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
