@@ -20,8 +20,6 @@
     <h1>Issue Template Generator</h1>
 </div>
 
-
-
 <div class="summary-bar">
     <input type="text" id="summary-bar" readonly value="Priority || Customer || Access ID || Issue Type" />
 </div>
@@ -60,7 +58,63 @@
     <div class="form-section">
         <form id="template-form">
             <div id="dynamic-fields">
-                <!-- Dynamic fields will be inserted here based on issue type -->
+                <div class="customer-details">
+                    <div class="form-group">
+                        <label for="customer-name">Customer Name:</label>
+                        <input type="text" id="customer-name" name="customer-name" placeholder="Enter customer name">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address" placeholder="Enter address">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="postal-code">Postal Code:</label>
+                            <input type="text" id="postal-code" name="postal-code" placeholder="Enter postal code">
+                        </div>
+                        <div class="form-group">
+                            <label for="house-number">House Number:</label>
+                            <input type="text" id="house-number" name="house-number" placeholder="Enter house number">
+                        </div>
+                        <div class="form-group">
+                            <label for="extension-number">Extension:</label>
+                            <input type="text" id="extension-number" name="extension-number" placeholder="Enter extension number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="technical-contact-name">Technical Contact Name:</label>
+                        <input type="text" id="technical-contact-name" name="technical-contact-name" placeholder="Enter contact name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="technical-contact-mobile">Mobile Number:</label>
+                            <input type="text" id="technical-contact-mobile" name="technical-contact-mobile" placeholder="Enter mobile number">
+                        </div>
+                        <div class="form-group">
+                            <label for="technical-contact-email">Email Address:</label>
+                            <input type="email" id="technical-contact-email" name="technical-contact-email" placeholder="Enter email address">
+                        </div>
+                    </div>
+
+                    <button id="add-secondary-contact" type="button">Add Secondary Contact</button>
+
+                    <div id="secondary-contact" style="display: none;">
+                        <div class="form-group">
+                            <label for="secondary-contact-name">Secondary Contact Name:</label>
+                            <input type="text" id="secondary-contact-name" name="secondary-contact-name" placeholder="Enter secondary contact name">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="secondary-contact-mobile">Mobile Number:</label>
+                                <input type="text" id="secondary-contact-mobile" name="secondary-contact-mobile" placeholder="Enter mobile number">
+                            </div>
+                            <div class="form-group">
+                                <label for="secondary-contact-email">Email Address:</label>
+                                <input type="email" id="secondary-contact-email" name="secondary-contact-email" placeholder="Enter email address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <button type="submit">Generate Template</button>
         </form>
