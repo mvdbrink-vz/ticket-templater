@@ -261,32 +261,54 @@ document.getElementById("issue-type").addEventListener("change", function () {
     dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
 
     if (issueTemplates[issueType]) {
-        issueTemplates[issueType].forEach(field => {
-            const div = document.createElement("div");
-            div.classList.add("form-group");
+        // Groepen definiëren
+        const sections = {
+            "Customer Details": ["Company name", "Access ID", "Street Housenumber", "ZIP code", "Technical contact name", "Technical contact phonenumber", "Technical contact E-mail"],
+            "Technical Details": [], // Vul aan per issue type
+            "Incident Description": ["Issue description", "Business Impact", "Frequency", "Occurring since", "Example timestamp of when the issue occurred", "LED status modem", "Mac address"],
+            "Additional Comments": ["Additional comments & taken actions"]
+        };
 
-            const label = document.createElement("label");
-            label.textContent = field.label;
+        // Velden dynamisch verdelen in groepen
+        Object.entries(sections).forEach(([sectionName, fieldLabels]) => {
+            const sectionDiv = document.createElement("div");
+            sectionDiv.classList.add("section");
+            sectionDiv.innerHTML = `<h3>${sectionName}</h3>`;
 
-            let input;
-            if (field.type === "textarea") {
-                input = document.createElement("textarea");
-                input.rows = 4; // Default height
-                input.style.resize = "both"; // Allow resizing
-                input.style.minHeight = "80px"; // Minimum height
-            } else {
-                input = document.createElement("input");
-                input.type = "text";
+            issueTemplates[issueType].forEach(field => {
+                if (fieldLabels.includes(field.label)) {
+                    const div = document.createElement("div");
+                    div.classList.add("form-group");
+
+                    const label = document.createElement("label");
+                    label.textContent = field.label;
+
+                    let input;
+                    if (field.type === "textarea") {
+                        input = document.createElement("textarea");
+                        input.rows = 4;
+                        input.style.resize = "both";
+                        input.style.minHeight = "80px";
+                    } else {
+                        input = document.createElement("input");
+                        input.type = "text";
+                    }
+
+                    input.setAttribute("label", field.label);
+                    input.placeholder = `Enter ${field.label.toLowerCase()}`;
+
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    sectionDiv.appendChild(div);
+                }
+            });
+
+            if (sectionDiv.querySelector(".form-group")) {
+                dynamicFieldsDiv.appendChild(sectionDiv);
             }
-
-            input.setAttribute("label", field.label);
-            input.placeholder = `Enter ${field.label.toLowerCase()}`;
-
-            div.appendChild(label);
-            div.appendChild(input);
-            dynamicFieldsDiv.appendChild(div);
         });
     }
+
     updateSummary();
 });
 
