@@ -94,15 +94,6 @@ body {
     resize: both;
     min-height: 80px;
 }
-textarea {
-    width: 100%; /* Makes the textarea take the full width of its container */
-    padding: 8px; /* Adds spacing inside the textarea */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 4px; /* Rounded corners */
-    font-size: 14px; /* Text size */
-    resize: both; /* Allows resizing in both horizontal and vertical directions */
-    min-height: 80px; /* Ensures it’s taller than a typical input field by default */
-}
 button {
     background-color: red;
     color: white;
@@ -125,19 +116,6 @@ footer {
     bottom: 0;
     width: 100%;
 }
-.incident-summary {
-    margin-top: 20px;
-    padding-top: 10px;
-    border-top: 1px solid #ccc;
-}
-.incident-summary h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-.incident-summary p {
-    font-size: 14px;
-    margin: 0;
-}
 .template-output {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -152,82 +130,4 @@ footer {
     font-size: 16px;
     margin-bottom: 10px;
     color: #333;
-}
-.template-output .section-title {
-    font-weight: bold;
-    margin-top: 15px;
-}
-/* Toggle Switch */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 34px;
-    height: 20px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-    transform: translateX(14px);
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.dark-mode .banner {
-    background: linear-gradient(90deg, #444, #666);
-}
-
-.dark-mode .top-bar, .dark-mode .summary-bar {
-    background-color: #333;
-    color: #eee;
-}
-
-.dark-mode .container {
-    background-color: #222;
-    color: #ddd;
-}
-
-.dark-mode button {
-    background-color: #555;
-    color: white;
-}
-
-.dark-mode button:hover {
-    background-color: #666;
 }
