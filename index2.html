@@ -7,23 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-<div class="dark-mode-toggle">
-    <label class="switch">
-        <input type="checkbox" id="darkModeToggle">
-        <span class="slider"></span>
-    </label>
-        <span id="darkModeLabel">Enable Dark Mode</span>
-</div>
-
 <div class="banner">
     <h1>Issue Template Generator</h1>
-</div>
-
-
-
-<div class="summary-bar">
-    <input type="text" id="summary-bar" readonly value="Priority || Customer || Access ID || Issue Type" />
 </div>
 
 <div class="top-bar">
@@ -60,7 +45,7 @@
     <div class="form-section">
         <form id="template-form">
             <div id="dynamic-fields">
-                <!-- Dynamic fields will be inserted here based on issue type -->
+                <!-- Dynamic fields will be inserted here -->
             </div>
             <button type="submit">Generate Template</button>
         </form>
@@ -68,10 +53,6 @@
     <div class="output-section">
         <h2>Generated Template:</h2>
         <div id="template-output" class="template-output"></div>
-        <div class="incident-summary" id="incident-summary">
-            <h3>Incident Summary:</h3>
-            <p id="summary-output"></p>
-        </div>
     </div>
 </div>
 
