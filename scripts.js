@@ -1,11 +1,12 @@
 const issueTemplates = {
     "MultiWifi - Hinder": [
+        { label: "Company name:", type: "input" },
+        { label: "Street Name:", type: "input" },
+        { label: "Housenumber:", type: "input" },{ label: "ZIP code:", type: "input" },
         { label: "Access ID:", type: "input" },
         { label: "MultiWifi ID:", type: "input" },
         { label: "Company name:", type: "input" },
         { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
         { label: "Technical contact name:", type: "input" },
         { label: "Technical contact phonenumber:", type: "input" },
         { label: "Technical contact E-mail:", type: "input" },
