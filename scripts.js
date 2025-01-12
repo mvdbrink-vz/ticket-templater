@@ -291,53 +291,37 @@ document.getElementById("issue-type").addEventListener("change", function () {
 });
 
 form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Voorkomt het herladen van de pagina
-
-    // Haal velden op
-    const inputs = dynamicFieldsDiv.querySelectorAll("input, textarea");
+    e.preventDefault();
+    
+    // Remove previous error messages
+    dynamicFieldsDiv.querySelectorAll(".error").forEach(err => err.remove());
     let hasError = false;
 
-    // Valideer verplichte velden
+    const priority = document.getElementById("priority").value;
+    const issueType = document.getElementById("issue-type").value;
+    const inputs = dynamicFieldsDiv.querySelectorAll("input, textarea");
+
+    if (!priority || !issueType) {
+        alert("Please fill out Priority and Issue Type.");
+        return;
+    }
+
     inputs.forEach(input => {
         if (!input.value) {
             hasError = true;
-            input.style.borderColor = "red"; // Highlight lege velden
+            const errorMessage = document.createElement("div");
+            errorMessage.textContent = "This field is required.";
+            errorMessage.classList.add("error");
+            errorMessage.style.color = "red";
+            errorMessage.style.fontSize = "12px";
+            input.parentElement.appendChild(errorMessage);
+            input.style.borderColor = "red";
         } else {
-            input.style.borderColor = ""; // Reset border kleur
+            input.style.borderColor = ""; // Clear error highlight
         }
     });
 
-    if (hasError) {
-        alert("Vul alle verplichte velden in!");
-        return; // Stop als er fouten zijn
-    }
-
-    // Bouw het template op
-    let generatedTemplate = "";
-
-    inputs.forEach(input => {
-        const label = input.previousElementSibling.textContent; // Label ophalen
-        const value = input.value; // Waarde van input
-        generatedTemplate += `${label}: ${value}\n`; // Voeg veld toe aan template
-    });
-
-    // Toon het resultaat
-    templateOutput.textContent = generatedTemplate;
-});
-
     if (hasError) return;
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Voorkomt herladen
-
-    const inputs = dynamicFieldsDiv.querySelectorAll("input, textarea");
-    console.log("Aantal velden gevonden:", inputs.length);
-
-    inputs.forEach(input => {
-        console.log("Label:", input.previousElementSibling?.textContent || "Geen label");
-        console.log("Waarde:", input.value);
-    });
-});
 
     // Show spinner during generation
     const spinner = document.createElement("div");
