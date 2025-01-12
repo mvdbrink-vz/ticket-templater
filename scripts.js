@@ -208,83 +208,30 @@ const issueTemplates = {
         { label: "Additional comments & taken actions:", type: "textarea" }
     ]
 };
-// Helper function to create input fields
-function createInputField(label, type = "input") {
-    const div = document.createElement("div");
-    div.classList.add("form-group");
 
-    const labelElement = document.createElement("label");
-    labelElement.textContent = label;
-
-    let inputElement;
-    if (type === "textarea") {
-        inputElement = document.createElement("textarea");
-        inputElement.rows = 4;
-        inputElement.style.resize = "both";
-        inputElement.style.minHeight = "80px";
-    } else {
-        inputElement = document.createElement("input");
-        inputElement.type = "text";
-    }
-
-    inputElement.setAttribute("label", label);
-    inputElement.placeholder = `Enter ${label.toLowerCase()}`;
-
-    div.appendChild(labelElement);
-    div.appendChild(inputElement);
-
-    return div;
-}
-
-// Helper function to create dropdown menus
-function createDropdown(label, options) {
-    const div = document.createElement("div");
-    div.classList.add("form-group");
-
-    const labelElement = document.createElement("label");
-    labelElement.textContent = label;
-
-    const selectElement = document.createElement("select");
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = "-- Select --";
-    selectElement.appendChild(defaultOption);
-
-    options.forEach(option => {
-        const optionElement = document.createElement("option");
-        optionElement.value = option;
-        optionElement.textContent = option;
-        selectElement.appendChild(optionElement);
-    });
-
-    div.appendChild(labelElement);
-    div.appendChild(selectElement);
-
-    return div;
-}
-
-// Dynamically generate fields based on issue type
-function generateFields(issueType) {
-    dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
-
-    if (issueTemplates[issueType]) {
-        issueTemplates[issueType].forEach(field => {
-            const inputField = createInputField(field.label, field.type);
-            dynamicFieldsDiv.appendChild(inputField);
-        });
-    }
-}
-
-// Event listeners
+const form = document.getElementById("template-form");
 const dynamicFieldsDiv = document.getElementById("dynamic-fields");
-const issueTypeSelect = document.getElementById("issue-type");
+const templateOutput = document.getElementById("template-output");
+const summaryOutput = document.getElementById("summary-output");
+const summaryBar = document.getElementById("summary-bar");
 
-issueTypeSelect.addEventListener("change", function () {
-    const issueType = this.value;
-    generateFields(issueType);
-});
+document.getElementById("issue-type").addEventListener("change", updateSummary);
+document.getElementById("priority").addEventListener("change", updateSummary);
 
-// Add priority dropdown when page loads
+function updateSummary() {
+    const priority = document.getElementById("priority").value;
+    const issueType = document.getElementById("issue-type").value;
+    const customer = dynamicFieldsDiv.querySelector("input[label='Company name:']")?.value || "Customer";
+    let accessID = dynamicFieldsDiv.querySelector("input[label='Access ID:']")?.value;
+
+    if (!accessID && (issueType.startsWith("Telefonie"))) {
+        accessID = dynamicFieldsDiv.querySelector("input[label='SIPEU:']")?.value || "SIPEU";
+    }
+
+    summaryBar.value = `${priority || "Priority"} || ${customer} || ${accessID || "Access ID"} || ${issueType || "Issue Type"}`;
+    summaryOutput.textContent = `${priority || "Priority"} || ${customer} || ${accessID || "Access ID"} || ${issueType || "Issue Type"}`;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("darkModeToggle");
     const label = document.getElementById("darkModeLabel");
@@ -307,40 +254,46 @@ document.addEventListener("DOMContentLoaded", () => {
             label.textContent = "Enable Dark Mode";
         }
     });
-
-    // Add the priority dropdown
-    if (!document.querySelector("select[label='Priority']")) {
-        const priorityDropdown = createDropdown("Priority", ["P1", "P2", "P3", "P4"]);
-        document.querySelector(".top-bar").appendChild(priorityDropdown);
-    }
 });
-// Form submission logic
-const form = document.getElementById("template-form");
-const templateOutput = document.getElementById("template-output");
-const summaryOutput = document.getElementById("summary-output");
-const summaryBar = document.getElementById("summary-bar");
 
-document.getElementById("issue-type").addEventListener("change", updateSummary);
-document.getElementById("priority").addEventListener("change", updateSummary);
+document.getElementById("issue-type").addEventListener("change", function () {
+    const issueType = this.value;
+    dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
 
-function updateSummary() {
-    const priority = document.getElementById("priority").value;
-    const issueType = document.getElementById("issue-type").value;
-    const customer = dynamicFieldsDiv.querySelector("input[label='Company name:']")?.value || "Customer";
-    let accessID = dynamicFieldsDiv.querySelector("input[label='Access ID:']")?.value;
+    if (issueTemplates[issueType]) {
+        issueTemplates[issueType].forEach(field => {
+            const div = document.createElement("div");
+            div.classList.add("form-group");
 
-    if (!accessID && (issueType.startsWith("Telefonie"))) {
-        accessID = dynamicFieldsDiv.querySelector("input[label='SIPEU:']")?.value || "SIPEU";
+            const label = document.createElement("label");
+            label.textContent = field.label;
+
+            let input;
+            if (field.type === "textarea") {
+                input = document.createElement("textarea");
+                input.rows = 4; // Default height
+                input.style.resize = "both"; // Allow resizing
+                input.style.minHeight = "80px"; // Minimum height
+            } else {
+                input = document.createElement("input");
+                input.type = "text";
+            }
+
+            input.setAttribute("label", field.label);
+            input.placeholder = `Enter ${field.label.toLowerCase()}`;
+
+            div.appendChild(label);
+            div.appendChild(input);
+            dynamicFieldsDiv.appendChild(div);
+        });
     }
-
-    summaryBar.value = `${priority || "Priority"} || ${customer} || ${accessID || "Access ID"} || ${issueType || "Issue Type"}`;
-    summaryOutput.textContent = `${priority || "Priority"} || ${customer} || ${accessID || "Access ID"} || ${issueType || "Issue Type"}`;
-}
+    updateSummary();
+});
 
 form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Voorkomt dat het formulier de pagina herlaadt
-
-    // Verwijder eerdere foutmeldingen
+    e.preventDefault();
+    
+    // Remove previous error messages
     dynamicFieldsDiv.querySelectorAll(".error").forEach(err => err.remove());
     let hasError = false;
 
@@ -348,7 +301,6 @@ form.addEventListener("submit", (e) => {
     const issueType = document.getElementById("issue-type").value;
     const inputs = dynamicFieldsDiv.querySelectorAll("input, textarea");
 
-    // Check dat verplichte velden zijn ingevuld
     if (!priority || !issueType) {
         alert("Please fill out Priority and Issue Type.");
         return;
@@ -365,71 +317,65 @@ form.addEventListener("submit", (e) => {
             input.parentElement.appendChild(errorMessage);
             input.style.borderColor = "red";
         } else {
-            input.style.borderColor = ""; // Verwijder error styling
+            input.style.borderColor = ""; // Clear error highlight
         }
     });
 
     if (hasError) return;
 
-    // Genereer template
-    let generatedTemplate = `Priority: ${priority}\n\n`;
+    // Show spinner during generation
+    const spinner = document.createElement("div");
+    spinner.classList.add("spinner");
+    spinner.textContent = "Generating template...";
+    document.body.appendChild(spinner);
 
-    generatedTemplate += `--- Customer Details ---\n`;
-    inputs.forEach(input => {
-        const label = input.previousElementSibling.textContent;
-        const value = input.value;
+    setTimeout(() => {
+        spinner.remove(); // Remove spinner after 1 second
 
-        if (label.toLowerCase().includes('customer') || label.toLowerCase().includes('contact')) {
-            generatedTemplate += `${label} ${value}\n`;
-        }
-    });
+        let generatedTemplate = `Priority: ${priority}\n\n`;
+        
+        generatedTemplate += `--- Customer Details ---\n`;
+        inputs.forEach(input => {
+            const label = input.previousElementSibling.textContent;
+            const value = input.value;
+        
+            if (label.toLowerCase().includes('customer') || label.toLowerCase().includes('contact')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
+        });
+        
+        generatedTemplate += `\n--- Technical Details ---\n`;
+        inputs.forEach(input => {
+            const label = input.previousElementSibling.textContent;
+            const value = input.value;
+        
+            if (label.toLowerCase().includes('technical') || label.toLowerCase().includes('mac') || label.toLowerCase().includes('gateway')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
+        });
+        
+        generatedTemplate += `\n--- Incident Description ---\n`;
+        inputs.forEach(input => {
+            const label = input.previousElementSibling.textContent;
+            const value = input.value;
+        
+            if (label.toLowerCase().includes('issue') || label.toLowerCase().includes('impact')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
+        });
+        
+        generatedTemplate += `\n--- Additional Comments ---\n`;
+        inputs.forEach(input => {
+            const label = input.previousElementSibling.textContent;
+            const value = input.value;
+        
+            if (label.toLowerCase().includes('comments')) {
+                generatedTemplate += `${label} ${value}\n`;
+            }
+        });
 
-    generatedTemplate += `\n--- Technical Details ---\n`;
-    inputs.forEach(input => {
-        const label = input.previousElementSibling.textContent;
-        const value = input.value;
-
-        if (label.toLowerCase().includes('technical') || label.toLowerCase().includes('mac') || label.toLowerCase().includes('gateway')) {
-            generatedTemplate += `${label} ${value}\n`;
-        }
-    });
-
-    generatedTemplate += `\n--- Incident Description ---\n`;
-    inputs.forEach(input => {
-        const label = input.previousElementSibling.textContent;
-        const value = input.value;
-
-        if (label.toLowerCase().includes('issue') || label.toLowerCase().includes('impact')) {
-            generatedTemplate += `${label} ${value}\n`;
-        }
-    });
-
-    generatedTemplate += `\n--- Additional Comments ---\n`;
-    inputs.forEach(input => {
-        const label = input.previousElementSibling.textContent;
-        const value = input.value;
-
-        if (label.toLowerCase().includes('comments')) {
-            generatedTemplate += `${label} ${value}\n`;
-        }
-    });
-
-    // Toon gegenereerd template
-    templateOutput.textContent = generatedTemplate;
-});
-    console.log("Script is geladen!"); // Test of het script wordt uitgevoerd
-    
-    issueTypeSelect.addEventListener("change", function () {
-        const issueType = this.value;
-        console.log("Geselecteerd issue type:", issueType); // Logt het geselecteerde issue type
-        generateFields(issueType);
-    });
-    
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        console.log("Formulier verzonden"); // Controleert of de submit-functie wordt aangeroepen
-});
-
+        templateOutput.textContent = generatedTemplate;
+        
         // Success message
         const successMessage = document.createElement("div");
         successMessage.textContent = "Template generated successfully!";
