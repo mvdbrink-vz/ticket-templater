@@ -258,36 +258,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.getElementById("issue-type").addEventListener("change", function () {
     const issueType = this.value;
-    dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
+    generateFields(issueType);
+});
 
-    if (issueTemplates[issueType]) {
-        issueTemplates[issueType].forEach(field => {
-            const div = document.createElement("div");
-            div.classList.add("form-group");
-
-            const label = document.createElement("label");
-            label.textContent = field.label;
-
-            let input;
-            if (field.type === "textarea") {
-                input = document.createElement("textarea");
-                input.rows = 4; // Default height
-                input.style.resize = "both"; // Allow resizing
-                input.style.minHeight = "80px"; // Minimum height
-            } else {
-                input = document.createElement("input");
-                input.type = "text";
-            }
-
-            input.setAttribute("label", field.label);
-            input.placeholder = `Enter ${field.label.toLowerCase()}`;
-
-            div.appendChild(label);
-            div.appendChild(input);
-            dynamicFieldsDiv.appendChild(div);
-        });
-    }
-    updateSummary();
+document.addEventListener("DOMContentLoaded", () => {
+    const priorityDropdown = createDropdown("Priority", ["P1", "P2", "P3", "P4"]);
+    document.querySelector(".top-bar").appendChild(priorityDropdown);
 });
 
 form.addEventListener("submit", (e) => {
