@@ -304,9 +304,10 @@ document.getElementById("issue-type").addEventListener("change", function () {
                 }
             });
 
-            if (sectionDiv.querySelector(".form-group")) {
-                dynamicFieldsDiv.appendChild(sectionDiv);
-            }
+        if (sectionDiv.querySelector(".form-group")) {
+            console.log(`Adding section: ${sectionName}`);
+            dynamicFieldsDiv.appendChild(sectionDiv);
+}
         });
     } else {
         console.error(`No template found for issue type: ${issueType}`);
