@@ -1,252 +1,300 @@
 const issueTemplates = {
     "MultiWifi - Hinder": [
-        { label: "Company name:", type: "input" },
-        { label: "Street Name:", type: "input" },
-        { label: "Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        
-        { label: "Access ID:", type: "input" },
-        { label: "MultiWifi ID:", type: "input" },
-        { label: "Customer ID:", type: "input" },
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Street Name:", type: "input", section: "Customer Details" },
+        { label: "Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
 
-        { label: "CM MAC:", type: "input" },
-        { label: "LED status modem:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        
-        { label: "SSID:", type: "input" },
-        { label: "Access Points Macs & Models:", type: "input" },
-        { label: "Access Points Ruckus status:", type: "input" },
-        { label: "LED status Access Points:", type: "input" },
-        
-        { label: "Mac address of an impacted device:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Example timestamp of when the issue occurred:", type: "input" },
-        { label: "Business Impact:", type: "textarea" },
+        { label: "Access ID:", type: "input", section: "Technical Details" },
+        { label: "MultiWifi ID:", type: "input", section: "Technical Details" },
+        { label: "Customer ID:", type: "input", section: "Technical Details" },
+        { label: "CM MAC:", type: "input", section: "Technical Details" },
+        { label: "LED status modem:", type: "input", section: "Technical Details" },
+        { label: "VTP / KTA:", type: "input", section: "Technical Details" },
 
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        { label: "SSID:", type: "input", section: "Technical Details" },
+        { label: "Access Points Macs & Models:", type: "input", section: "Technical Details" },
+        { label: "Access Points Ruckus status:", type: "input", section: "Technical Details" },
+        { label: "LED status Access Points:", type: "input", section: "Technical Details" },
+        { label: "Mac address of an impacted device:", type: "input", section: "Technical Details" },
+        
+        { label: "Issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Frequency:", type: "input", section: "Incident Description" },
+        { label: "Occurring since:", type: "input", section: "Incident Description" },
+        { label: "Example timestamp of when the issue occurred:", type: "input", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
     "MultiWifi - No Connection": [
-        { label: "Company name:", type: "input" },
-        { label: "Street Name:", type: "input" },
-        { label: "Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-
-        { label: "Access ID:", type: "input" },
-        { label: "MultiWifi ID:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        
-        { label: "CM MAC:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "LED status modem:", type: "input" },
-        
-        { label: "Issue description:", type: "textarea" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Business Impact:", type: "textarea" },
-        
-        { label: "Additional comments & taken actions:", type: "textarea" }
-    ],
+        // Customer Details
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Street Name:", type: "input", section: "Customer Details" },
+        { label: "Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "Access ID:", type: "input", section: "Technical Details" },
+        { label: "MultiWifi ID:", type: "input", section: "Technical Details" },
+        { label: "Customer ID:", type: "input", section: "Technical Details" },
+        { label: "CM MAC:", type: "input", section: "Technical Details" },
+        { label: "VTP / KTA:", type: "input", section: "Technical Details" },
+        { label: "LED status modem:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Frequency:", type: "input", section: "Incident Description" },
+        { label: "Occurring since:", type: "input", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
+],
     "Telefonie - Feature Issues": [
-        { label: "Company name:", type: "input" },
-        { label: "Street Name:", type: "input" },
-        { label: "Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        
-        { label: "SIPEU:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "What Feature isn't working:", type: "input" },
-        
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        
-        { label: "Additional comments & taken actions:", type: "textarea" }
-    ],
+        // Customer Details
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Street Name:", type: "input", section: "Customer Details" },
+        { label: "Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "SIPEU:", type: "input", section: "Technical Details" },
+        { label: "Customer ID:", type: "input", section: "Technical Details" },
+        { label: "What Feature isn't working:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
+],
     "Telefonie - No in- or outgoing calls": [
-        { label: "Company name:", type: "input" },
-        { label: "Street Name:", type: "input" },
-        { label: "Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        
-        { label: "SIPEU:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "A -Phonenumber:", type: "input" },
-        { label: "B -Phonenumber:", type: "input" },
-        { label: "Timestamp of call:", type: "input" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-
-        { label: "LED status modem:", type: "input" },
-        { label: "LED status phone:", type: "input" },
-        
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        // Customer Details
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Street Name:", type: "input", section: "Customer Details" },
+        { label: "Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "SIPEU:", type: "input", section: "Technical Details" },
+        { label: "Customer ID:", type: "input", section: "Technical Details" },
+        { label: "A -Phonenumber:", type: "input", section: "Technical Details" },
+        { label: "B -Phonenumber:", type: "input", section: "Technical Details" },
+        { label: "Timestamp of call:", type: "input", section: "Technical Details" },
+        { label: "Frequency:", type: "input", section: "Technical Details" },
+        { label: "Occurring since:", type: "input", section: "Technical Details" },
+        { label: "LED status modem:", type: "input", section: "Technical Details" },
+        { label: "LED status phone:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
     "Telefonie - One way audio": [
-        { label: "Company name:", type: "input" },
-        { label: "Street Name:", type: "input" },
-        { label: "Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        
-        { label: "SIPEU:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Phonenumber:", type: "input" },
-
-        { label: "A -Phonenumber:", type: "input" },
-        { label: "B -Phonenumber:", type: "input" },
-        { label: "Timestamp of call:", type: "input" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        // Customer Details
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Street Name:", type: "input", section: "Customer Details" },
+        { label: "Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "SIPEU:", type: "input", section: "Technical Details" },
+        { label: "Customer ID:", type: "input", section: "Technical Details" },
+        { label: "Phonenumber:", type: "input", section: "Technical Details" },
+        { label: "A -Phonenumber:", type: "input", section: "Technical Details" },
+        { label: "B -Phonenumber:", type: "input", section: "Technical Details" },
+        { label: "Timestamp of call:", type: "input", section: "Technical Details" },
+        { label: "Frequency:", type: "input", section: "Technical Details" },
+        { label: "Occurring since:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
     "Telefonie - Quality issues": [
-        { label: "Company name:", type: "input" },
-        { label: "Street Name:", type: "input" },
-        { label: "Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        
-        { label: "SIPEU:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-
-        { label: "A -Phonenumber:", type: "input" },
-        { label: "B -Phonenumber:", type: "input" },
-        { label: "Timestamp of call:", type: "input" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "The quality issues occur with:", type: "textarea" },
-        { label: "Who experiences the quality issues:", type: "textarea" },
-        { label: "3 Call examples no older than 48 hours:", type: "textarea" },
-
-        { label: "CM MAC:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "Gateway:", type: "input" },
-        { label: "IP Address:", type: "input" },
-        { label: "Subnetmasker:", type: "input" },
-
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        // Customer Details
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Street Name:", type: "input", section: "Customer Details" },
+        { label: "Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "SIPEU:", type: "input", section: "Technical Details" },
+        { label: "Customer ID:", type: "input", section: "Technical Details" },
+        { label: "A -Phonenumber:", type: "input", section: "Technical Details" },
+        { label: "B -Phonenumber:", type: "input", section: "Technical Details" },
+        { label: "Timestamp of call:", type: "input", section: "Technical Details" },
+        { label: "Frequency:", type: "input", section: "Technical Details" },
+        { label: "CM MAC:", type: "input", section: "Technical Details" },
+        { label: "VTP / KTA:", type: "input", section: "Technical Details" },
+        { label: "Gateway:", type: "input", section: "Technical Details" },
+        { label: "IP Address:", type: "input", section: "Technical Details" },
+        { label: "Subnetmasker:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "The quality issues occur with:", type: "textarea", section: "Incident Description" },
+        { label: "Who experiences the quality issues:", type: "textarea", section: "Incident Description" },
+        { label: "3 Call examples no older than 48 hours:", type: "textarea", section: "Incident Description" },
+        { label: "Issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
     "Data - No Connection": [
-        { label: "Access ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "CM MAC:", type: "input" },
-        { label: "Gateway:", type: "input" },
-        { label: "IP Address:", type: "input" },
-        { label: "Subnetmasker:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "LED status modem:", type: "input" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        // Customer Details
+        { label: "Access ID:", type: "input", section: "Customer Details" },
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Customer ID:", type: "input", section: "Customer Details" },
+        { label: "Street Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "CM MAC:", type: "input", section: "Technical Details" },
+        { label: "Gateway:", type: "input", section: "Technical Details" },
+        { label: "IP Address:", type: "input", section: "Technical Details" },
+        { label: "Subnetmasker:", type: "input", section: "Technical Details" },
+        { label: "VTP / KTA:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+        { label: "LED status modem:", type: "input", section: "Incident Description" },
+        { label: "Frequency:", type: "input", section: "Incident Description" },
+        { label: "Occurring since:", type: "input", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
     "Data - Packetloss": [
-        { label: "Access ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "CM MAC:", type: "input" },
-        { label: "Gateway:", type: "input" },
-        { label: "IP Address:", type: "input" },
-        { label: "Subnetmasker:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "Packetloss description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        // Customer Details
+        { label: "Access ID:", type: "input", section: "Customer Details" },
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Customer ID:", type: "input", section: "Customer Details" },
+        { label: "Street Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "CM MAC:", type: "input", section: "Technical Details" },
+        { label: "Gateway:", type: "input", section: "Technical Details" },
+        { label: "IP Address:", type: "input", section: "Technical Details" },
+        { label: "Subnetmasker:", type: "input", section: "Technical Details" },
+        { label: "VTP / KTA:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Packetloss description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+        { label: "Occurring since:", type: "input", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
     "Data - Performance Issue": [
-        { label: "Access ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "CM MAC:", type: "input" },
-        { label: "Gateway:", type: "input" },
-        { label: "IP Address:", type: "input" },
-        { label: "Performance issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        // Customer Details
+        { label: "Access ID:", type: "input", section: "Customer Details" },
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Customer ID:", type: "input", section: "Customer Details" },
+        { label: "Street Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "CM MAC:", type: "input", section: "Technical Details" },
+        { label: "Gateway:", type: "input", section: "Technical Details" },
+        { label: "IP Address:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Performance issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+        { label: "Occurring since:", type: "input", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
     "Data - Speed Issues": [
-        { label: "Access ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "CM MAC:", type: "input" },
-        { label: "Gateway:", type: "input" },
-        { label: "IP Address:", type: "input" },
-        { label: "Subnetmasker:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "Measured speed:", type: "input" },
-        { label: "Expected speed:", type: "input" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "LED status modem:", type: "input" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        // Customer Details
+        { label: "Access ID:", type: "input", section: "Customer Details" },
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Customer ID:", type: "input", section: "Customer Details" },
+        { label: "Street Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "CM MAC:", type: "input", section: "Technical Details" },
+        { label: "Gateway:", type: "input", section: "Technical Details" },
+        { label: "IP Address:", type: "input", section: "Technical Details" },
+        { label: "Subnetmasker:", type: "input", section: "Technical Details" },
+        { label: "VTP / KTA:", type: "input", section: "Technical Details" },
+        { label: "Measured speed:", type: "input", section: "Technical Details" },
+        { label: "Expected speed:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+        { label: "LED status modem:", type: "input", section: "Incident Description" },
+        { label: "Frequency:", type: "input", section: "Incident Description" },
+        { label: "Occurring since:", type: "input", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
     ],
-    "Data - Reachability IP": [
-        { label: "Access ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "IP address impacted:", type: "input" },
-        { label: "Reachability issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
-    ]
+"Data - Reachability IP": [
+        // Customer Details
+        { label: "Access ID:", type: "input", section: "Customer Details" },
+        { label: "Company name:", type: "input", section: "Customer Details" },
+        { label: "Customer ID:", type: "input", section: "Customer Details" },
+        { label: "Street Housenumber:", type: "input", section: "Customer Details" },
+        { label: "ZIP code:", type: "input", section: "Customer Details" },
+        { label: "Technical contact name:", type: "input", section: "Customer Details" },
+        { label: "Technical contact phonenumber:", type: "input", section: "Customer Details" },
+        { label: "Technical contact E-mail:", type: "input", section: "Customer Details" },
+    
+        // Technical Details
+        { label: "IP address impacted:", type: "input", section: "Technical Details" },
+    
+        // Incident Description
+        { label: "Reachability issue description:", type: "textarea", section: "Incident Description" },
+        { label: "Business Impact:", type: "textarea", section: "Incident Description" },
+        { label: "Occurring since:", type: "input", section: "Incident Description" },
+    
+        // Additional Comments
+        { label: "Additional comments & taken actions:", type: "textarea", section: "Additional Comments" }
+        ]
 };
 
 const form = document.getElementById("template-form");
@@ -301,65 +349,84 @@ document.getElementById("issue-type").addEventListener("change", function () {
     dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
 
     if (issueTemplates[issueType]) {
+        const sections = {}; // To group fields by sections
+
+        // Group fields by sections
         issueTemplates[issueType].forEach(field => {
-            const div = document.createElement("div");
-            div.classList.add("form-group");
-
-            const label = document.createElement("label");
-            label.textContent = field.label;
-
-            let input;
-            if (field.type === "textarea") {
-                input = document.createElement("textarea");
-                input.rows = 4; // Default height
-                input.style.resize = "both"; // Allow resizing
-                input.style.minHeight = "80px"; // Minimum height
-            } else {
-                input = document.createElement("input");
-                input.type = "text";
+            if (!sections[field.section]) {
+                sections[field.section] = []; // Initialize section if it doesn't exist
             }
+            sections[field.section].push(field);
+        });
 
-            input.setAttribute("label", field.label);
-            input.placeholder = `Enter ${field.label.toLowerCase()}`;
+        // Render each section
+        Object.keys(sections).forEach(sectionName => {
+            const sectionDiv = document.createElement("div");
+            sectionDiv.classList.add("form-section");
+            const sectionTitle = document.createElement("h3");
+            sectionTitle.textContent = sectionName;
+            sectionDiv.appendChild(sectionTitle);
 
-            div.appendChild(label);
-            div.appendChild(input);
-            dynamicFieldsDiv.appendChild(div);
+            sections[sectionName].forEach(field => {
+                const div = document.createElement("div");
+                div.classList.add("form-group");
+
+                const label = document.createElement("label");
+                label.textContent = field.label;
+
+                let input;
+                if (field.type === "textarea") {
+                    input = document.createElement("textarea");
+                    input.rows = 4;
+                    input.style.resize = "both";
+                } else {
+                    input = document.createElement("input");
+                    input.type = "text";
+                }
+
+                input.setAttribute("label", field.label);
+                input.placeholder = `Enter ${field.label.toLowerCase()}`;
+
+                div.appendChild(label);
+                div.appendChild(input);
+                sectionDiv.appendChild(div);
+            });
+
+            dynamicFieldsDiv.appendChild(sectionDiv); // Add the section to the form
         });
     }
-    updateSummary();
+
+    updateSummary(); // Refresh the summary bar
 });
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    
-    // Remove previous error messages
-    dynamicFieldsDiv.querySelectorAll(".error").forEach(err => err.remove());
-    let hasError = false;
 
-    const priority = document.getElementById("priority").value;
-    const issueType = document.getElementById("issue-type").value;
+    let generatedTemplate = `Priority: ${document.getElementById("priority").value}\n\n`;
+
+    // Group inputs by their sections
+    const sections = {};
     const inputs = dynamicFieldsDiv.querySelectorAll("input, textarea");
 
-    if (!priority || !issueType) {
-        alert("Please fill out Priority and Issue Type.");
-        return;
-    }
-
     inputs.forEach(input => {
-        if (!input.value) {
-            hasError = true;
-            const errorMessage = document.createElement("div");
-            errorMessage.textContent = "This field is required.";
-            errorMessage.classList.add("error");
-            errorMessage.style.color = "red";
-            errorMessage.style.fontSize = "12px";
-            input.parentElement.appendChild(errorMessage);
-            input.style.borderColor = "red";
-        } else {
-            input.style.borderColor = ""; // Clear error highlight
+        const section = input.closest(".form-section").querySelector("h3").textContent;
+        if (!sections[section]) {
+            sections[section] = [];
         }
+        const label = input.previousElementSibling.textContent;
+        const value = input.value;
+        sections[section].push(`${label} ${value}`);
     });
+
+    // Add each section to the template
+    Object.keys(sections).forEach(section => {
+        generatedTemplate += `--- ${section} ---\n`;
+        generatedTemplate += sections[section].join("\n");
+        generatedTemplate += `\n\n`;
+    });
+
+    templateOutput.textContent = generatedTemplate; // Display the generated template
+});
 
     if (hasError) return;
 
