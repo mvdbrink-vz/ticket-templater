@@ -77,24 +77,6 @@ body {
     white-space: pre-wrap;
     font-size: 12px;
 }
-.form-group {
-    display: flex;
-    flex-direction: column; /* Zorg dat label en input onder elkaar staan */
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.form-group input, .form-group textarea {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%; /* Velden vullen de beschikbare ruimte */
-}
 .form-group textarea {
     width: 100%;
     padding: 8px;
