@@ -276,6 +276,7 @@ document.getElementById("issue-type").addEventListener("change", function () {
             sectionDiv.innerHTML = `<h3>${sectionName}</h3>`;
 
             issueTemplates[issueType].forEach(field => {
+                console.log(`Processing field: ${field.label}`); // Debugging
                 if (fieldLabels.includes(field.label)) {
                     const div = document.createElement("div");
                     div.classList.add("form-group");
@@ -307,10 +308,13 @@ document.getElementById("issue-type").addEventListener("change", function () {
                 dynamicFieldsDiv.appendChild(sectionDiv);
             }
         });
+    } else {
+        console.error(`No template found for issue type: ${issueType}`);
     }
 
     updateSummary();
 });
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
