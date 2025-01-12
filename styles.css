@@ -2,17 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #FFFFFF; /* Vodafone wit */
-    color: #000000; /* Vodafone zwart */
+    background-color: #f5f5f5;
 }
 .banner {
-    background: linear-gradient(90deg, #E60000, #FF6900); /* Vodafone rood en oranje */
-    color: #FFFFFF; /* Witte tekst */
-    padding: 25px;
+    background: linear-gradient(90deg, red, orange);
+    color: white;
+    padding: 20px;
     text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Schaduw */
 }
 .top-bar {
     display: flex;
@@ -51,12 +47,12 @@ body {
 .container {
     max-width: 1200px;
     margin: 20px auto;
-    background: #FFFFFF; /* Witte achtergrond */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Donkere schaduw */
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 .form-section {
     flex: 1;
@@ -68,6 +64,25 @@ body {
     border: 1px solid #ccc;
     border-radius: 8px;
     white-space: pre-wrap;
+    font-size: 12px;
+}
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.form-group label {
+    flex: 1;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 12px;
+}
+.form-group input, .form-group textarea {
+    flex: 2;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 12px;
 }
 .form-group textarea {
@@ -89,19 +104,17 @@ textarea {
     min-height: 80px; /* Ensures it’s taller than a typical input field by default */
 }
 button {
-    background-color: #E60000; /* Vodafone rood */
-    color: #FFFFFF; /* Witte tekst */
+    background-color: red;
+    color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: 6px; /* Meer afgeronde hoeken */
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 14px; /* Iets grotere tekst */
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Schaduw */
+    font-size: 12px;
+    transition: background-color 0.3s;
 }
 button:hover {
-    background-color: #FF6900; /* Vodafone oranje */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Hover schaduw */
+    background-color: orange;
 }
 footer {
     text-align: center;
