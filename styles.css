@@ -16,17 +16,10 @@ body {
 }
 .top-bar {
     display: flex;
-    gap: 20px; /* Ruimte tussen de dropdowns */
+    justify-content: space-between;
     background-color: #333;
     padding: 15px;
     color: white;
-    align-items: center; /* Verticale uitlijning */
-}
-.top-bar .form-group {
-    display: flex;
-    flex-direction: column; /* Zet label en select onder elkaar */
-    flex: 1; /* Zorg dat beide dropdowns dezelfde breedte hebben */
-    max-width: 300px; /* Beperkt de breedte van de dropdowns */
 }
 .top-bar select {
     padding: 6px;
