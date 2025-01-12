@@ -309,10 +309,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Add the priority dropdown
-    const priorityDropdown = createDropdown("Priority", ["P1", "P2", "P3", "P4"]);
-    document.querySelector(".top-bar").appendChild(priorityDropdown);
+    if (!document.querySelector("select[label='Priority']")) {
+        const priorityDropdown = createDropdown("Priority", ["P1", "P2", "P3", "P4"]);
+        document.querySelector(".top-bar").appendChild(priorityDropdown);
+    }
 });
-
 // Form submission logic
 const form = document.getElementById("template-form");
 const templateOutput = document.getElementById("template-output");
