@@ -161,6 +161,19 @@ footer {
     margin-top: 20px;
     white-space: pre-wrap;
 }
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+.section h3 {
+    margin-top: 0;
+    color: #E60000; /* Vodafone rood */
+    font-size: 16px;
+    font-weight: bold;
+}
 .template-output h2 {
     font-size: 16px;
     margin-bottom: 10px;
