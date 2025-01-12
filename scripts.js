@@ -4,115 +4,153 @@ const issueTemplates = {
         { label: "Street Name:", type: "input" },
         { label: "Housenumber:", type: "input" },
         { label: "ZIP code:", type: "input" },
-        { label: "Access ID:", type: "input" },
-        { label: "MultiWifi ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
         { label: "Technical contact name:", type: "input" },
         { label: "Technical contact phonenumber:", type: "input" },
         { label: "Technical contact E-mail:", type: "input" },
+        
+        { label: "Access ID:", type: "input" },
+        { label: "MultiWifi ID:", type: "input" },
+        { label: "Customer ID:", type: "input" },
+
         { label: "CM MAC:", type: "input" },
+        { label: "LED status modem:", type: "input" },
         { label: "VTP / KTA:", type: "input" },
+        
         { label: "SSID:", type: "input" },
         { label: "Access Points Macs & Models:", type: "input" },
         { label: "Access Points Ruckus status:", type: "input" },
-        { label: "Mac address of an impacted device:", type: "input" },
-        { label: "LED status modem:", type: "input" },
         { label: "LED status Access Points:", type: "input" },
+        
+        { label: "Mac address of an impacted device:", type: "input" },
         { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
         { label: "Frequency:", type: "input" },
         { label: "Occurring since:", type: "input" },
         { label: "Example timestamp of when the issue occurred:", type: "input" },
+        { label: "Business Impact:", type: "textarea" },
+
         { label: "Additional comments & taken actions:", type: "textarea" }
     ],
     "MultiWifi - No Connection": [
-        { label: "Access ID:", type: "input" },
-        { label: "MultiWifi ID:", type: "input" },
         { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
+        { label: "Street Name:", type: "input" },
+        { label: "Housenumber:", type: "input" },
         { label: "ZIP code:", type: "input" },
         { label: "Technical contact name:", type: "input" },
         { label: "Technical contact phonenumber:", type: "input" },
         { label: "Technical contact E-mail:", type: "input" },
+
+        { label: "Access ID:", type: "input" },
+        { label: "MultiWifi ID:", type: "input" },
+        { label: "Customer ID:", type: "input" },
+        
         { label: "CM MAC:", type: "input" },
         { label: "VTP / KTA:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
         { label: "LED status modem:", type: "input" },
+        
+        { label: "Issue description:", type: "textarea" },
         { label: "Frequency:", type: "input" },
         { label: "Occurring since:", type: "input" },
+        { label: "Business Impact:", type: "textarea" },
+        
         { label: "Additional comments & taken actions:", type: "textarea" }
     ],
     "Telefonie - Feature Issues": [
-        { label: "SIPEU:", type: "input" },
         { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
+        { label: "Street Name:", type: "input" },
+        { label: "Housenumber:", type: "input" },
         { label: "ZIP code:", type: "input" },
         { label: "Technical contact name:", type: "input" },
         { label: "Technical contact phonenumber:", type: "input" },
         { label: "Technical contact E-mail:", type: "input" },
+        
+        { label: "SIPEU:", type: "input" },
+        { label: "Customer ID:", type: "input" },
+        { label: "What Feature isn't working:", type: "input" },
+        
         { label: "Issue description:", type: "textarea" },
         { label: "Business Impact:", type: "textarea" },
+        
         { label: "Additional comments & taken actions:", type: "textarea" }
     ],
     "Telefonie - No in- or outgoing calls": [
-        { label: "SIPEU:", type: "input" },
         { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
+        { label: "Street Name:", type: "input" },
+        { label: "Housenumber:", type: "input" },
         { label: "ZIP code:", type: "input" },
         { label: "Technical contact name:", type: "input" },
         { label: "Technical contact phonenumber:", type: "input" },
         { label: "Technical contact E-mail:", type: "input" },
-        { label: "Phonenumber:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "LED status modem:", type: "input" },
-        { label: "LED status phone:", type: "input" },
+        
+        { label: "SIPEU:", type: "input" },
+        { label: "Customer ID:", type: "input" },
+        { label: "A -Phonenumber:", type: "input" },
+        { label: "B -Phonenumber:", type: "input" },
+        { label: "Timestamp of call:", type: "input" },
         { label: "Frequency:", type: "input" },
         { label: "Occurring since:", type: "input" },
+
+        { label: "LED status modem:", type: "input" },
+        { label: "LED status phone:", type: "input" },
+        
+        { label: "Issue description:", type: "textarea" },
+        { label: "Business Impact:", type: "textarea" },
+
         { label: "Additional comments & taken actions:", type: "textarea" }
     ],
     "Telefonie - One way audio": [
-        { label: "SIPEU:", type: "input" },
         { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
+        { label: "Street Name:", type: "input" },
+        { label: "Housenumber:", type: "input" },
         { label: "ZIP code:", type: "input" },
         { label: "Technical contact name:", type: "input" },
         { label: "Technical contact phonenumber:", type: "input" },
         { label: "Technical contact E-mail:", type: "input" },
+        
+        { label: "SIPEU:", type: "input" },
+        { label: "Customer ID:", type: "input" },
         { label: "Phonenumber:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
+
+        { label: "A -Phonenumber:", type: "input" },
+        { label: "B -Phonenumber:", type: "input" },
+        { label: "Timestamp of call:", type: "input" },
         { label: "Frequency:", type: "input" },
         { label: "Occurring since:", type: "input" },
+        
+        { label: "Issue description:", type: "textarea" },
+        { label: "Business Impact:", type: "textarea" },
+
         { label: "Additional comments & taken actions:", type: "textarea" }
     ],
     "Telefonie - Quality issues": [
-        { label: "SIPEU:", type: "input" },
         { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
+        { label: "Street Name:", type: "input" },
+        { label: "Housenumber:", type: "input" },
         { label: "ZIP code:", type: "input" },
         { label: "Technical contact name:", type: "input" },
         { label: "Technical contact phonenumber:", type: "input" },
         { label: "Technical contact E-mail:", type: "input" },
-        { label: "CM MAC:", type: "input" },
-        { label: "Gateway:", type: "input" },
-        { label: "IP Address:", type: "input" },
-        { label: "Subnetmasker:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "Phonenumber:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
+        
+        { label: "SIPEU:", type: "input" },
+        { label: "Customer ID:", type: "input" },
+
+        { label: "A -Phonenumber:", type: "input" },
+        { label: "B -Phonenumber:", type: "input" },
+        { label: "Timestamp of call:", type: "input" },
         { label: "Frequency:", type: "input" },
+        { label: "Occurring since:", type: "input" },
         { label: "The quality issues occur with:", type: "textarea" },
         { label: "Who experiences the quality issues:", type: "textarea" },
         { label: "3 Call examples no older than 48 hours:", type: "textarea" },
+
+        { label: "CM MAC:", type: "input" },
+        { label: "VTP / KTA:", type: "input" },
+        { label: "Gateway:", type: "input" },
+        { label: "IP Address:", type: "input" },
+        { label: "Subnetmasker:", type: "input" },
+
+        { label: "Issue description:", type: "textarea" },
+        { label: "Business Impact:", type: "textarea" },
+        
         { label: "Additional comments & taken actions:", type: "textarea" }
     ],
     "Data - No Connection": [
