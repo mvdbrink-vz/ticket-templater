@@ -1,0 +1,35 @@
+Issue | Quality issue
+
+---[ Customer Details ]-------
+SIPEU: 
+Company name: 
+Customer ID: 
+Street Housenumber: 
+ZIP code: 
+Technical contact name: 
+Technical contact phonenumber: 
+Technical contact E-mail: 
+------------------------------
+
+---[ technical Details ]-------
+CM MAC: 
+Gateway: 
+IP adres: 
+Subnetmasker: 255.255.255.248 / 255.255.255.252
+VTP / KTA: 
+Phonenumber: 
+------------------------------
+
+--[ Incident Description ]-----
+Occuring since: 
+Issue description: 
+Business Impact: 
+Frequency: (x) out of 10 calls have the issue
+The quality issues occur with: incoming/outgoing/all calls
+Who experiences the quality issues: 
+3 Call examples no older than 48 hours: Example, A Number - B Number - timestamp
+------------------------------
+
+--[ Describe Incident ]-------
+Additional comments & taken actions: 
+------------------------------
