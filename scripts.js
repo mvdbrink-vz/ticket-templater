@@ -338,9 +338,9 @@ function updateSummary() {
 }
 
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Voorkomt dat het formulier de pagina herlaadt
 
-    // Remove previous error messages
+    // Verwijder eerdere foutmeldingen
     dynamicFieldsDiv.querySelectorAll(".error").forEach(err => err.remove());
     let hasError = false;
 
@@ -348,6 +348,7 @@ form.addEventListener("submit", (e) => {
     const issueType = document.getElementById("issue-type").value;
     const inputs = dynamicFieldsDiv.querySelectorAll("input, textarea");
 
+    // Check dat verplichte velden zijn ingevuld
     if (!priority || !issueType) {
         alert("Please fill out Priority and Issue Type.");
         return;
@@ -364,64 +365,58 @@ form.addEventListener("submit", (e) => {
             input.parentElement.appendChild(errorMessage);
             input.style.borderColor = "red";
         } else {
-            input.style.borderColor = ""; // Clear error highlight
+            input.style.borderColor = ""; // Verwijder error styling
         }
     });
 
     if (hasError) return;
 
-    // Show spinner during generation
-    const spinner = document.createElement("div");
-    spinner.classList.add("spinner");
-    spinner.textContent = "Generating template...";
-    document.body.appendChild(spinner);
+    // Genereer template
+    let generatedTemplate = `Priority: ${priority}\n\n`;
 
-    setTimeout(() => {
-        spinner.remove(); // Remove spinner after 1 second
+    generatedTemplate += `--- Customer Details ---\n`;
+    inputs.forEach(input => {
+        const label = input.previousElementSibling.textContent;
+        const value = input.value;
 
-        let generatedTemplate = `Priority: ${priority}\n\n`;
+        if (label.toLowerCase().includes('customer') || label.toLowerCase().includes('contact')) {
+            generatedTemplate += `${label} ${value}\n`;
+        }
+    });
 
-        generatedTemplate += `--- Customer Details ---\n`;
-        inputs.forEach(input => {
-            const label = input.previousElementSibling.textContent;
-            const value = input.value;
+    generatedTemplate += `\n--- Technical Details ---\n`;
+    inputs.forEach(input => {
+        const label = input.previousElementSibling.textContent;
+        const value = input.value;
 
-            if (label.toLowerCase().includes('customer') || label.toLowerCase().includes('contact')) {
-                generatedTemplate += `${label} ${value}\n`;
-            }
-        });
+        if (label.toLowerCase().includes('technical') || label.toLowerCase().includes('mac') || label.toLowerCase().includes('gateway')) {
+            generatedTemplate += `${label} ${value}\n`;
+        }
+    });
 
-        generatedTemplate += `\n--- Technical Details ---\n`;
-        inputs.forEach(input => {
-            const label = input.previousElementSibling.textContent;
-            const value = input.value;
+    generatedTemplate += `\n--- Incident Description ---\n`;
+    inputs.forEach(input => {
+        const label = input.previousElementSibling.textContent;
+        const value = input.value;
 
-            if (label.toLowerCase().includes('technical') || label.toLowerCase().includes('mac') || label.toLowerCase().includes('gateway')) {
-                generatedTemplate += `${label} ${value}\n`;
-            }
-        });
+        if (label.toLowerCase().includes('issue') || label.toLowerCase().includes('impact')) {
+            generatedTemplate += `${label} ${value}\n`;
+        }
+    });
 
-        generatedTemplate += `\n--- Incident Description ---\n`;
-        inputs.forEach(input => {
-            const label = input.previousElementSibling.textContent;
-            const value = input.value;
+    generatedTemplate += `\n--- Additional Comments ---\n`;
+    inputs.forEach(input => {
+        const label = input.previousElementSibling.textContent;
+        const value = input.value;
 
-            if (label.toLowerCase().includes('issue') || label.toLowerCase().includes('impact')) {
-                generatedTemplate += `${label} ${value}\n`;
-            }
-        });
+        if (label.toLowerCase().includes('comments')) {
+            generatedTemplate += `${label} ${value}\n`;
+        }
+    });
 
-        generatedTemplate += `\n--- Additional Comments ---\n`;
-        inputs.forEach(input => {
-            const label = input.previousElementSibling.textContent;
-            const value = input.value;
-
-            if (label.toLowerCase().includes('comments')) {
-                generatedTemplate += `${label} ${value}\n`;
-            }
-        });
-
-        templateOutput.textContent = generatedTemplate;
+    // Toon gegenereerd template
+    templateOutput.textContent = generatedTemplate;
+});
 
         // Success message
         const successMessage = document.createElement("div");
