@@ -207,6 +207,18 @@ form.addEventListener("submit", (e) => {
     // Toon gegenereerd template
     templateOutput.textContent = generatedTemplate;
 });
+    console.log("Script is geladen!"); // Test of het script wordt uitgevoerd
+    
+    issueTypeSelect.addEventListener("change", function () {
+        const issueType = this.value;
+        console.log("Geselecteerd issue type:", issueType); // Logt het geselecteerde issue type
+        generateFields(issueType);
+    });
+    
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log("Formulier verzonden"); // Controleert of de submit-functie wordt aangeroepen
+});
 
         // Success message
         const successMessage = document.createElement("div");
