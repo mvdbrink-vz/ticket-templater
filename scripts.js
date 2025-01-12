@@ -1,78 +1,95 @@
 const issueTemplates = {
     "MultiWifi - Hinder": [
-        { label: "Access ID:", type: "input" },
-        { label: "MultiWifi ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "CM MAC:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "SSID:", type: "input" },
-        { label: "Access Points Macs & Models:", type: "input" },
-        { label: "Access Points Ruckus status:", type: "input" },
-        { label: "Mac address of an impacted device:", type: "input" },
-        { label: "LED status modem:", type: "input" },
-        { label: "LED status Access Points:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Example timestamp of when the issue occurred:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        { section: "Customer Details", fields: [
+            { label: "Access ID:", type: "input" },
+            { label: "MultiWifi ID:", type: "input" },
+            { label: "Company name:", type: "input" },
+            { label: "Customer ID:", type: "input" },
+            { label: "Street Housenumber:", type: "input" },
+            { label: "ZIP code:", type: "input" },
+            { label: "Technical contact phonenumber:", type: "input" },
+            { label: "Technical contact E-mail:", type: "input" }
+        ]},
+        { section: "Technical Details", fields: [
+            { label: "CM MAC:", type: "input" },
+            { label: "VTP / KTA:", type: "input" },
+            { label: "SSID:", type: "input" }
+        ]},
+        { section: "Incident Description", fields: [
+            { label: "Issue description:", type: "textarea" },
+            { label: "Business Impact:", type: "textarea" }
+        ]},
+        { section: "Additional Comments", fields: [
+            { label: "Additional comments & taken actions:", type: "textarea" }
+        ]}
     ],
     "MultiWifi - No Connection": [
-        { label: "Access ID:", type: "input" },
-        { label: "MultiWifi ID:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "CM MAC:", type: "input" },
-        { label: "VTP / KTA:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "LED status modem:", type: "input" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        { section: "Customer Details", fields: [
+            { label: "Access ID:", type: "input" },
+            { label: "MultiWifi ID:", type: "input" },
+            { label: "Company name:", type: "input" },
+            { label: "Customer ID:", type: "input" },
+            { label: "Street Housenumber:", type: "input" },
+            { label: "ZIP code:", type: "input" },
+            { label: "Technical contact phonenumber:", type: "input" },
+            { label: "Technical contact E-mail:", type: "input" }
+        ]},
+        { section: "Technical Details", fields: [
+            { label: "CM MAC:", type: "input" },
+            { label: "VTP / KTA:", type: "input" }
+        ]},
+        { section: "Incident Description", fields: [
+            { label: "Issue description:", type: "textarea" },
+            { label: "Business Impact:", type: "textarea" }
+        ]},
+        { section: "Additional Comments", fields: [
+            { label: "Additional comments & taken actions:", type: "textarea" }
+        ]}
     ],
     "Telefonie - Feature Issues": [
-        { label: "SIPEU:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        { section: "Customer Details", fields: [
+            { label: "SIPEU:", type: "input" },
+            { label: "Company name:", type: "input" },
+            { label: "Customer ID:", type: "input" },
+            { label: "Street Housenumber:", type: "input" },
+            { label: "ZIP code:", type: "input" },
+            { label: "Technical contact phonenumber:", type: "input" },
+            { label: "Technical contact E-mail:", type: "input" }
+        ]},
+        { section: "Technical Details", fields: [
+            { label: "Phonenumber:", type: "input" }
+        ]},
+        { section: "Incident Description", fields: [
+            { label: "Issue description:", type: "textarea" },
+            { label: "Business Impact:", type: "textarea" }
+        ]},
+        { section: "Additional Comments", fields: [
+            { label: "Additional comments & taken actions:", type: "textarea" }
+        ]}
     ],
     "Telefonie - No in- or outgoing calls": [
-        { label: "SIPEU:", type: "input" },
-        { label: "Company name:", type: "input" },
-        { label: "Customer ID:", type: "input" },
-        { label: "Street Housenumber:", type: "input" },
-        { label: "ZIP code:", type: "input" },
-        { label: "Technical contact name:", type: "input" },
-        { label: "Technical contact phonenumber:", type: "input" },
-        { label: "Technical contact E-mail:", type: "input" },
-        { label: "Phonenumber:", type: "input" },
-        { label: "Issue description:", type: "textarea" },
-        { label: "Business Impact:", type: "textarea" },
-        { label: "LED status modem:", type: "input" },
-        { label: "LED status phone:", type: "input" },
-        { label: "Frequency:", type: "input" },
-        { label: "Occurring since:", type: "input" },
-        { label: "Additional comments & taken actions:", type: "textarea" }
+        { section: "Customer Details", fields: [
+            { label: "SIPEU:", type: "input" },
+            { label: "Company name:", type: "input" },
+            { label: "Customer ID:", type: "input" },
+            { label: "Street Housenumber:", type: "input" },
+            { label: "ZIP code:", type: "input" },
+            { label: "Technical contact phonenumber:", type: "input" },
+            { label: "Technical contact E-mail:", type: "input" }
+        ]},
+        { section: "Technical Details", fields: [
+            { label: "Phonenumber:", type: "input" }
+        ]},
+        { section: "Incident Description", fields: [
+            { label: "Issue description:", type: "textarea" },
+            { label: "Business Impact:", type: "textarea" }
+        ]},
+        { section: "Additional Comments", fields: [
+            { label: "Additional comments & taken actions:", type: "textarea" }
+        ]}
+    ],
+    // Other issue types would be similarly structured here
+};
     ],
     "Telefonie - One way audio": [
         { label: "SIPEU:", type: "input" },
@@ -373,7 +390,79 @@ form.addEventListener("submit", (e) => {
                 generatedTemplate += `${label} ${value}\n`;
             }
         });
+////// added
+const form = document.getElementById("template-form");
+const dynamicFieldsDiv = document.getElementById("dynamic-fields");
+const templateOutput = document.getElementById("template-output");
+const issueTypeSelector = document.getElementById("issue-type");
+const prioritySelector = document.getElementById("priority");
 
+issueTypeSelector.addEventListener("change", function () {
+    const issueType = this.value;
+    dynamicFieldsDiv.innerHTML = ""; // Clear existing fields
+
+    if (issueTemplates[issueType]) {
+        issueTemplates[issueType].forEach(section => {
+            const sectionDiv = document.createElement("div");
+            sectionDiv.classList.add("section");
+
+            const sectionTitle = document.createElement("h3");
+            sectionTitle.textContent = section.section;
+            sectionDiv.appendChild(sectionTitle);
+
+            section.fields.forEach(field => {
+                const fieldDiv = document.createElement("div");
+                fieldDiv.classList.add("form-group");
+
+                const label = document.createElement("label");
+                label.textContent = field.label;
+                fieldDiv.appendChild(label);
+
+                let input;
+                if (field.type === "textarea") {
+                    input = document.createElement("textarea");
+                } else {
+                    input = document.createElement("input");
+                    input.type = "text";
+                }
+
+                input.placeholder = `Enter ${field.label.toLowerCase()}`;
+                fieldDiv.appendChild(input);
+                sectionDiv.appendChild(fieldDiv);
+            });
+
+            dynamicFieldsDiv.appendChild(sectionDiv);
+        });
+    }
+});
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const issueType = issueTypeSelector.value;
+    const priority = prioritySelector.value;
+    const sections = dynamicFieldsDiv.querySelectorAll(".section");
+
+    if (!issueType || !priority) {
+        alert("Please select both an issue type and a priority.");
+        return;
+    }
+
+    let generatedTemplate = `Priority: ${priority}\nIssue Type: ${issueType}\n\n`;
+
+    sections.forEach(section => {
+        const sectionTitle = section.querySelector("h3").textContent;
+        generatedTemplate += `--- ${sectionTitle} ---\n`;
+
+        const fields = section.querySelectorAll(".form-group");
+        fields.forEach(field => {
+            const label = field.querySelector("label").textContent;
+            const input = field.querySelector("input, textarea").value;
+            generatedTemplate += `${label} ${input}\n`;
+        });
+        generatedTemplate += "\n";
+    });
+////// added
         templateOutput.textContent = generatedTemplate;
         
         // Success message
