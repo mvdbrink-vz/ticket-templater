@@ -261,58 +261,32 @@ document.getElementById("issue-type").addEventListener("change", function () {
     dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
 
     if (issueTemplates[issueType]) {
-        // Groepen definiëren
-        const sections = {
-            "Customer Details": ["Company name", "Access ID", "Street Housenumber", "ZIP code", "Technical contact name", "Technical contact phonenumber", "Technical contact E-mail"],
-            "Technical Details": [], // Vul aan per issue type
-            "Incident Description": ["Issue description", "Business Impact", "Frequency", "Occurring since", "Example timestamp of when the issue occurred", "LED status modem", "Mac address"],
-            "Additional Comments": ["Additional comments & taken actions"]
-        };
+        issueTemplates[issueType].forEach(field => {
+            const div = document.createElement("div");
+            div.classList.add("form-group");
 
-        // Velden dynamisch verdelen in groepen
-        Object.entries(sections).forEach(([sectionName, fieldLabels]) => {
-            const sectionDiv = document.createElement("div");
-            sectionDiv.classList.add("section");
-            sectionDiv.innerHTML = `<h3>${sectionName}</h3>`;
+            const label = document.createElement("label");
+            label.textContent = field.label;
 
-            issueTemplates[issueType].forEach(field => {
-                console.log(`Processing field: ${field.label}`); // Debugging
-                if (fieldLabels.includes(field.label)) {
-                    const div = document.createElement("div");
-                    div.classList.add("form-group");
+            let input;
+            if (field.type === "textarea") {
+                input = document.createElement("textarea");
+                input.rows = 4; // Default height
+                input.style.resize = "both"; // Allow resizing
+                input.style.minHeight = "80px"; // Minimum height
+            } else {
+                input = document.createElement("input");
+                input.type = "text";
+            }
 
-                    const label = document.createElement("label");
-                    label.textContent = field.label;
+            input.setAttribute("label", field.label);
+            input.placeholder = `Enter ${field.label.toLowerCase()}`;
 
-                    let input;
-                    if (field.type === "textarea") {
-                        input = document.createElement("textarea");
-                        input.rows = 4;
-                        input.style.resize = "both";
-                        input.style.minHeight = "80px";
-                    } else {
-                        input = document.createElement("input");
-                        input.type = "text";
-                    }
-
-                    input.setAttribute("label", field.label);
-                    input.placeholder = `Enter ${field.label.toLowerCase()}`;
-
-                    div.appendChild(label);
-                    div.appendChild(input);
-                    sectionDiv.appendChild(div);
-                }
-            });
-
-        if (sectionDiv.querySelector(".form-group")) {
-            console.log(`Adding section: ${sectionName}`);
-            dynamicFieldsDiv.appendChild(sectionDiv);
-}
+            div.appendChild(label);
+            div.appendChild(input);
+            dynamicFieldsDiv.appendChild(div);
         });
-    } else {
-        console.error(`No template found for issue type: ${issueType}`);
     }
-
     updateSummary();
 });
 
