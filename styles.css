@@ -5,10 +5,14 @@ body {
     background-color: #f5f5f5;
 }
 .banner {
-    background: linear-gradient(90deg, red, orange);
-    color: white;
-    padding: 20px;
     text-align: center;
+    background: linear-gradient(90deg, red, orange);
+    padding: 10px 0;
+}
+.banner img.logo-banner {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px; /* Adjust based on the logo size */
 }
 .top-bar {
     display: flex;
