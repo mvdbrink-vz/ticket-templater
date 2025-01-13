@@ -1,5 +1,6 @@
 // The template file location. This is where the templates can be adjusted in an easy way and keep the json clean and compact.
 import { issueTemplates } from './templates.js';
+
 const form = document.getElementById("template-form");
 const dynamicFieldsDiv = document.getElementById("dynamic-fields");
 const templateOutput = document.getElementById("template-output");
@@ -86,27 +87,30 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let hasError = false;
-    const inputs = dynamicFieldsDiv.querySelectorAll("input, textarea");
-
-    // Validate inputs
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            hasError = true;
-
-            // Add error message if not already present
-            if (!input.parentElement.querySelector(".error")) {
-                const errorMessage = document.createElement("div");
-                errorMessage.textContent = "This field is required.";
-                errorMessage.style.color = "red";
-                errorMessage.classList.add("error");
-                input.parentElement.appendChild(errorMessage);
-            }
-        } else {
-            // Remove error if input is valid
+    // Centralize validation using event delegation
+    dynamicFieldsDiv.addEventListener("input", (event) => {
+        if (event.target.matches("input, textarea")) {
+            const input = event.target;
             const error = input.parentElement.querySelector(".error");
-            if (error) error.remove();
-        }
-    });
+    
+            // Check if the input is empty
+            if (!input.value.trim()) {
+                input.style.borderColor = "red";
+    
+                // Add error message if not present
+                if (!error) {
+                    const errorMessage = document.createElement("div");
+                    errorMessage.textContent = "This field is required.";
+                    errorMessage.style.color = "red";
+                    errorMessage.classList.add("error");
+                    input.parentElement.appendChild(errorMessage);
+                }
+            } else {
+                input.style.borderColor = ""; // Remove red border
+                if (error) error.remove(); // Remove error message
+    }
+});
+
 
     if (hasError) return; // Stop if there are validation errors
 
