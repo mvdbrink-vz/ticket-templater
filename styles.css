@@ -16,7 +16,8 @@ body {
 }
 .top-bar {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align items to the left */
+    gap: 20px; /* Add spacing between elements */
     background-color: #333;
     padding: 15px;
     color: white;
