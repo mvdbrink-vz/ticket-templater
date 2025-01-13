@@ -1,4 +1,4 @@
-// The template file location. This is where the templates can be adjusted in an easy way and keep the json clean and compact.
+// The template file location. This is where the templates can be adjusted in an easy way and keep the JSON clean and compact.
 import { issueTemplates } from './templates.js';
 
 const form = document.getElementById("template-form");
@@ -82,35 +82,44 @@ document.getElementById("issue-type").addEventListener("change", function () {
     updateSummary(); // Update summary bar
 });
 
+// Centralize validation using event delegation
+dynamicFieldsDiv.addEventListener("input", (event) => {
+    if (event.target.matches("input, textarea")) {
+        const input = event.target;
+        const error = input.parentElement.querySelector(".error");
+
+        // Check if the input is empty
+        if (!input.value.trim()) {
+            input.style.borderColor = "red";
+
+            // Add error message if not present
+            if (!error) {
+                const errorMessage = document.createElement("div");
+                errorMessage.textContent = "This field is required.";
+                errorMessage.style.color = "red";
+                errorMessage.classList.add("error");
+                input.parentElement.appendChild(errorMessage);
+            }
+        } else {
+            input.style.borderColor = ""; // Remove red border
+            if (error) error.remove(); // Remove error message
+        }
+    }
+});
+
 // Handle form submission
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let hasError = false;
-    // Centralize validation using event delegation
-    dynamicFieldsDiv.addEventListener("input", (event) => {
-        if (event.target.matches("input, textarea")) {
-            const input = event.target;
-            const error = input.parentElement.querySelector(".error");
-    
-            // Check if the input is empty
-            if (!input.value.trim()) {
-                input.style.borderColor = "red";
-    
-                // Add error message if not present
-                if (!error) {
-                    const errorMessage = document.createElement("div");
-                    errorMessage.textContent = "This field is required.";
-                    errorMessage.style.color = "red";
-                    errorMessage.classList.add("error");
-                    input.parentElement.appendChild(errorMessage);
-                }
-            } else {
-                input.style.borderColor = ""; // Remove red border
-                if (error) error.remove(); // Remove error message
-    }
-});
 
+    // Validate all inputs again before submission
+    dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
+        if (!input.value.trim()) {
+            hasError = true;
+            input.style.borderColor = "red";
+        }
+    });
 
     if (hasError) return; // Stop if there are validation errors
 
@@ -118,7 +127,7 @@ form.addEventListener("submit", (e) => {
 
     // Group inputs by sections
     const sections = {};
-    inputs.forEach(input => {
+    dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
         const section = input.closest(".form-section").querySelector("h3").textContent;
         if (!sections[section]) {
             sections[section] = [];
