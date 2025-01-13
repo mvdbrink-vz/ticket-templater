@@ -1,6 +1,5 @@
 // The template file location. This is where the templates can be adjusted in an easy way and keep the json clean and compact.
 import { issueTemplates } from './templates.js';
-
 const form = document.getElementById("template-form");
 const dynamicFieldsDiv = document.getElementById("dynamic-fields");
 const templateOutput = document.getElementById("template-output");
