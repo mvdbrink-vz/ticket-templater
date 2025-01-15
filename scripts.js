@@ -207,3 +207,37 @@ form.addEventListener("submit", (e) => {
     }, 3000);
 });
 
+// **Copy to Clipboard Feature**
+const copyButton = document.createElement("button");
+copyButton.id = "copy-to-clipboard";
+copyButton.textContent = "Copy to Clipboard";
+copyButton.style.marginRight = "10px";
+
+copyButton.addEventListener("click", () => {
+    const output = templateOutput.textContent;
+    navigator.clipboard.writeText(output).then(() => {
+        alert("Template copied to clipboard!");
+    });
+});
+
+document.querySelector(".output-section").prepend(copyButton);
+
+// **Download as .txt Feature**
+const downloadButton = document.createElement("button");
+downloadButton.id = "download-txt";
+downloadButton.textContent = "Download as .txt";
+
+downloadButton.addEventListener("click", () => {
+    const output = templateOutput.textContent;
+    const blob = new Blob([output], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "template.txt";
+    link.click();
+
+    URL.revokeObjectURL(url);
+});
+
+document.querySelector(".output-section").prepend(downloadButton);
