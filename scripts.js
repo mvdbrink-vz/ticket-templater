@@ -97,29 +97,51 @@ document.getElementById("issue-type").addEventListener("change", function () {
     dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
 
     if (issueTemplates[issueType]) {
+        const sections = {};
+
+        // Group fields by section
         issueTemplates[issueType].forEach(field => {
-            const fieldDiv = document.createElement("div");
-            fieldDiv.classList.add("form-group");
-
-            const label = document.createElement("label");
-            label.textContent = field.label;
-
-            let input;
-            if (field.type === "textarea") {
-                input = document.createElement("textarea");
-                input.rows = 4;
-                input.style.resize = "both";
-            } else {
-                input = document.createElement("input");
-                input.type = "text";
+            if (!sections[field.section]) {
+                sections[field.section] = [];
             }
+            sections[field.section].push(field);
+        });
 
-            input.setAttribute("data-label", field.label);
-            input.placeholder = `Enter ${field.label.toLowerCase()}`;
+        // Render grouped sections
+        Object.keys(sections).forEach(sectionName => {
+            const sectionDiv = document.createElement("div");
+            sectionDiv.classList.add("form-section");
 
-            fieldDiv.appendChild(label);
-            fieldDiv.appendChild(input);
-            dynamicFieldsDiv.appendChild(fieldDiv);
+            const sectionTitle = document.createElement("h3");
+            sectionTitle.textContent = sectionName;
+            sectionDiv.appendChild(sectionTitle);
+
+            sections[sectionName].forEach(field => {
+                const fieldDiv = document.createElement("div");
+                fieldDiv.classList.add("form-group");
+
+                const label = document.createElement("label");
+                label.textContent = field.label;
+
+                let input;
+                if (field.type === "textarea") {
+                    input = document.createElement("textarea");
+                    input.rows = 4;
+                    input.style.resize = "both";
+                } else {
+                    input = document.createElement("input");
+                    input.type = "text";
+                }
+
+                input.setAttribute("data-label", field.label);
+                input.placeholder = `Enter ${field.label.toLowerCase()}`;
+
+                fieldDiv.appendChild(label);
+                fieldDiv.appendChild(input);
+                sectionDiv.appendChild(fieldDiv);
+            });
+
+            dynamicFieldsDiv.appendChild(sectionDiv); // Add section to form
         });
     }
 
@@ -144,23 +166,31 @@ form.addEventListener("submit", (e) => {
 
     let generatedTemplate = `Priority: ${document.getElementById("priority").value}\n\n`;
 
-    // Group inputs by sections
-    const sections = {};
+    // Group inputs by predefined sections
+    const sections = {
+        "Customer Details": [],
+        "Technical Details": [],
+        "Incident Description": [],
+        "Additional Comments": []
+    };
+
     dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
         const section = input.closest(".form-section").querySelector("h3").textContent;
-        if (!sections[section]) {
-            sections[section] = [];
-        }
         const label = input.getAttribute("data-label");
         const value = input.value;
-        sections[section].push(`${label} ${value}`);
+
+        if (sections[section]) {
+            sections[section].push(`${label}: ${value}`);
+        }
     });
 
-    // Construct template
+    // Construct the template with organized sections
     Object.keys(sections).forEach(section => {
-        generatedTemplate += `--- ${section} ---\n`;
-        generatedTemplate += sections[section].join("\n");
-        generatedTemplate += `\n\n`;
+        if (sections[section].length > 0) {
+            generatedTemplate += `--- ${section} ---\n`;
+            generatedTemplate += sections[section].join("\n");
+            generatedTemplate += `\n\n`;
+        }
     });
 
     // Display template output
@@ -176,3 +206,4 @@ form.addEventListener("submit", (e) => {
         successMessage.remove();
     }, 3000);
 });
+
