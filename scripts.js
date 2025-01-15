@@ -1,5 +1,5 @@
 // The template file location. This is where the templates can be adjusted in an easy way and keep the JSON clean and compact.
-import { issueTemplates } from './templates.js';
+let issueTemplates = {}; // Resettable global object for issue templates
 
 const form = document.getElementById("template-form");
 const dynamicFieldsDiv = document.getElementById("dynamic-fields");
@@ -14,6 +14,9 @@ document.getElementById("department").addEventListener("change", function () {
     // Clear previous Issue Type selections
     const issueTypeDropdown = document.getElementById("issue-type");
     issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
+
+    // Reset global issueTemplates object
+    issueTemplates = {};
 
     // Load the relevant template file dynamically
     let scriptTag = document.getElementById("template-script");
@@ -32,7 +35,7 @@ document.getElementById("department").addEventListener("change", function () {
     }
 
     scriptTag.onload = () => {
-        if (typeof issueTemplates !== "undefined") {
+        if (typeof issueTemplates !== "undefined" && Object.keys(issueTemplates).length > 0) {
             // Populate Issue Types
             for (const type in issueTemplates) {
                 const option = document.createElement("option");
@@ -41,7 +44,7 @@ document.getElementById("department").addEventListener("change", function () {
                 issueTypeDropdown.appendChild(option);
             }
         } else {
-            console.error("issueTemplates is not defined. Check the template file.");
+            console.error("issueTemplates is not defined or empty. Check the template file.");
         }
     };
 
