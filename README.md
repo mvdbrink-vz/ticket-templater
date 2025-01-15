@@ -1,6 +1,5 @@
-Work thats done so far,
-
 Accomplishments
+
 1. Core Features
 Dynamic Form Generation:
 
@@ -17,6 +16,9 @@ Customer Details
 Technical Details
 Incident Description
 Additional Comments
+
+
+
 2. User Interface Enhancements
 Dark Mode Toggle:
 
@@ -27,6 +29,9 @@ Responsive & Clean Design:
 A visually appealing banner with gradient styling.
 A well-structured layout using CSS with a responsive container for the form and output.
 Hover effects on buttons and a fixed footer for branding.
+
+
+
 3. Code & Structure
 HTML:
 
@@ -39,15 +44,15 @@ Formatted sections for better readability (e.g., banners, forms, outputs).
 Buttons and interactive elements styled with hover transitions.
 JavaScript:
 
-
 Centralized issueTemplates object for defining template structure.
 Functions for:
 Updating the summary bar dynamically.
 Generating and validating templates.
 Managing dark mode preferences.
-
-
 Implementation of error handling and user feedback during form submission.
+
+
+
 4. Current Assets
 Files Uploaded:
 scripts.js: Contains all the dynamic functionality for the issue generator.
