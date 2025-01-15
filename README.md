@@ -1,60 +1,92 @@
-Accomplishments
+1. Project Structure
+Files
+index.html:
 
-1. Core Features
+The main interface for the application.
+Includes dropdowns for selecting the Department, Issue Type, and Priority.
+Contains the dynamic form section and summary bar.
+Displays the generated template output.
+scripts.js:
+
+Core JavaScript file that:
+Dynamically loads the appropriate template files based on the selected department.
+Populates the Issue Type dropdown with relevant templates.
+Dynamically generates form fields grouped by sections (Customer Details, Technical Details, etc.).
+Handles the summary bar, which updates dynamically as inputs are filled.
+Validates form inputs and generates the final template output.
+small-templates.js:
+
+Contains templates for the Tech Services Small department.
+Uses the window.issueTemplates object to define fields grouped by sections.
+b2b-templates.js:
+
+Contains templates for the 2nd Line B2B department.
+Structured similarly to small-templates.js.
+styles.css:
+
+Defines the styling for the application.
+Handles responsive design, dropdowns, buttons, summary bar, and form layout.
+2. Workflow
+Department Selection:
+
+When a department is selected, the corresponding template file (small-templates.js or b2b-templates.js) is dynamically loaded.
+The Issue Type dropdown is populated with templates from the loaded file.
 Dynamic Form Generation:
 
-Based on selected issue type, dynamic fields are created with appropriate labels and input types (text, textarea).
-The form automatically adjusts to show only the relevant fields for the selected issue type.
-Priority & Issue Type Selector:
+When an Issue Type is selected, form fields are dynamically generated and grouped by their section property (e.g., Customer Details, Technical Details).
+Real-Time Summary Updates:
 
-Dropdowns allow users to select the issue priority (P1–P4) and issue type (e.g., "MultiWifi - Hinder", "Data - Packetloss").
-These selections update a live summary bar and feed into the generated template.
-Template Output:
+As inputs are filled, the summary bar (Priority || Customer || Access ID || Issue Type) updates dynamically without requiring form submission.
+Template Generation:
 
-A formatted, readable template is generated and displayed, divided into logical sections:
-Customer Details
-Technical Details
-Incident Description
-Additional Comments
+Clicking the Generate Template button validates the inputs and generates a formatted output grouped by sections.
+3. Key Features
+Dynamic Template Loading:
 
+Templates are stored in separate files (small-templates.js, b2b-templates.js), making them modular and easy to update.
+Grouped Sections:
 
+Form fields are organized into predefined sections (e.g., Customer Details, Technical Details), improving readability and usability.
+Live Updates:
 
-2. User Interface Enhancements
-Dark Mode Toggle:
+The summary bar reflects user inputs in real-time.
+Validation:
 
-Users can enable/disable dark mode via a toggle switch.
-Preferences are saved in localStorage to persist the setting across sessions.
-Responsive & Clean Design:
+All required fields are validated before generating the template.
+4. Example Files
+small-templates.js
+javascript
+Code kopiëren
+window.issueTemplates = {
+    "Small Template Example": [
+        { label: "Company Name", type: "input", section: "Customer Details" },
+        { label: "Contact Person", type: "input", section: "Customer Details" },
+        { label: "Issue Description", type: "textarea", section: "Incident Description" },
+        { label: "Actions Taken", type: "textarea", section: "Additional Comments" }
+    ]
+};
+b2b-templates.js
+javascript
+Code kopiëren
+window.issueTemplates = {
+    "B2B Template Example": [
+        { label: "Customer Name", type: "input", section: "Customer Details" },
+        { label: "Technical Contact", type: "input", section: "Technical Details" },
+        { label: "Issue Summary", type: "textarea", section: "Incident Description" },
+        { label: "Follow-Up Notes", type: "textarea", section: "Additional Comments" }
+    ]
+};
+scripts.js
+This file:
 
-A visually appealing banner with gradient styling.
-A well-structured layout using CSS with a responsive container for the form and output.
-Hover effects on buttons and a fixed footer for branding.
-
-
-
-3. Code & Structure
-HTML:
-
-A well-organized structure with sections for the dynamic form, summary bar, and template output.
-Integration of a footer for a professional finish.
-CSS:
-
-Styling for both light and dark modes, ensuring a polished look.
-Formatted sections for better readability (e.g., banners, forms, outputs).
-Buttons and interactive elements styled with hover transitions.
-JavaScript:
-
-Centralized issueTemplates object for defining template structure.
-Functions for:
-Updating the summary bar dynamically.
-Generating and validating templates.
-Managing dark mode preferences.
-Implementation of error handling and user feedback during form submission.
-
-
-
-4. Current Assets
-Files Uploaded:
-scripts.js: Contains all the dynamic functionality for the issue generator.
-index2.html: The main page structure for the website.
-styles.css: Styling for both light and dark modes, ensuring accessibility and responsiveness.
+Handles department selection, template loading, form rendering, summary updates, and template generation.
+Validates and organizes data dynamically.
+5. Improvements Added
+Modular Structure:
+Templates are separated by department for easy management.
+Dynamic Updates:
+Form fields and the summary bar update in real-time.
+Validation:
+Ensures all required fields are filled before generating the template.
+Debugging Support:
+Added console logs to identify issues during development.
