@@ -152,7 +152,9 @@ document.getElementById("issue-type").addEventListener("change", function () {
 });
 
 // Prevent form submission if validation fails
-form.addEventListener("submit", (e) => {
+orm.addEventListener("submit", (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
     let hasError = false;
 
     dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
@@ -166,8 +168,7 @@ form.addEventListener("submit", (e) => {
     if (hasError) {
         alert("Please fix errors before submitting.");
         console.log("Form submission blocked due to validation errors.");
-        e.preventDefault();
-        return;
+        return; // Stop processing if there are errors
     }
 
     console.log("Form submission passed validation.");
