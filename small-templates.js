@@ -1,4 +1,4 @@
-export const issueTemplates = {
+const issueTemplates = {
     "MultiWifi - Hinder": [
          // Customer Details
         { label: "Company name:", type: "input", section: "Customer Details" },
