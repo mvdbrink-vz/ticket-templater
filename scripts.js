@@ -27,9 +27,8 @@ document.getElementById("department").addEventListener("change", function () {
 
     // Reset dropdowns and templates
     issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
-    issueTemplates = {};
+    issueTemplates = {}; // Reset global object
 
-    // Load department-specific templates
     let scriptTag = document.getElementById("template-script");
     if (scriptTag) scriptTag.remove();
 
@@ -45,26 +44,38 @@ document.getElementById("department").addEventListener("change", function () {
         return;
     }
 
-scriptTag.onload = () => {
-    console.log("Template file loaded successfully.");
-    console.log("Loaded issueTemplates:", window.issueTemplates); // Log the templates
-    if (typeof window.issueTemplates !== "undefined" && Object.keys(window.issueTemplates).length > 0) {
-        issueTemplates = window.issueTemplates; // Assign to global object
-        populateIssueTypes();
-    } else {
-        console.error("Failed to load templates for the selected department.");
-    }
-};
+    console.log(`Loading template file: ${scriptTag.src}`);
 
+    scriptTag.onload = () => {
+        console.log("Template file loaded successfully.");
+        console.log("Loaded issueTemplates:", window.issueTemplates);
+
+        if (typeof window.issueTemplates !== "undefined" && Object.keys(window.issueTemplates).length > 0) {
+            issueTemplates = window.issueTemplates; // Assign to global object
+            populateIssueTypes();
+        } else {
+            console.error("Failed to load templates for the selected department.");
+        }
+    };
 
     scriptTag.onerror = () => {
-        console.error(`Failed to load ${scriptTag.src}. Check file path.`);
+        console.error(`Failed to load ${scriptTag.src}. Check the file path.`);
     };
 
     document.body.appendChild(scriptTag);
 });
 
-// Update summary bar dynamically
+// Listen for changes to dynamically update the summary
+document.getElementById("priority").addEventListener("change", updateSummary);
+document.getElementById("issue-type").addEventListener("change", updateSummary);
+
+dynamicFieldsDiv.addEventListener("input", (event) => {
+    if (event.target.matches("input, textarea")) {
+        updateSummary();
+    }
+});
+
+// Update summary dynamically
 function updateSummary() {
     const priority = document.getElementById("priority").value;
     const issueType = document.getElementById("issue-type").value;
@@ -80,18 +91,42 @@ function updateSummary() {
     summaryOutput.textContent = summaryText;
 }
 
-// Listen for changes to dynamically update the summary
-document.getElementById("priority").addEventListener("change", updateSummary);
-document.getElementById("issue-type").addEventListener("change", updateSummary);
+// Render dynamic fields based on the selected issue type
+document.getElementById("issue-type").addEventListener("change", function () {
+    const issueType = this.value;
+    dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
 
-// Add listeners to all dynamically created inputs
-dynamicFieldsDiv.addEventListener("input", (event) => {
-    if (event.target.matches("input, textarea")) {
-        updateSummary();
+    if (issueTemplates[issueType]) {
+        issueTemplates[issueType].forEach(field => {
+            const fieldDiv = document.createElement("div");
+            fieldDiv.classList.add("form-group");
+
+            const label = document.createElement("label");
+            label.textContent = field.label;
+
+            let input;
+            if (field.type === "textarea") {
+                input = document.createElement("textarea");
+                input.rows = 4;
+                input.style.resize = "both";
+            } else {
+                input = document.createElement("input");
+                input.type = "text";
+            }
+
+            input.setAttribute("data-label", field.label);
+            input.placeholder = `Enter ${field.label.toLowerCase()}`;
+
+            fieldDiv.appendChild(label);
+            fieldDiv.appendChild(input);
+            dynamicFieldsDiv.appendChild(fieldDiv);
+        });
     }
+
+    updateSummary(); // Update summary bar
 });
 
-// Handle form submission (no changes here)
+// Handle form submission
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
