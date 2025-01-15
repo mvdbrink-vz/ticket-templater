@@ -153,11 +153,10 @@ document.getElementById("issue-type").addEventListener("change", function () {
 
 // Prevent form submission if validation fails
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent form submission behavior
 
     let hasError = false;
 
-    // Validate all fields
     dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
         const error = input.parentElement.querySelector(".error");
         if (!input.value.trim() || error) {
@@ -169,7 +168,7 @@ form.addEventListener("submit", (e) => {
     if (hasError) {
         alert("Please fix errors before submitting.");
         console.log("Form submission blocked due to validation errors.");
-        return; // Stop processing if there are errors
+        return;
     }
 
     console.log("Form submission passed validation.");
@@ -188,7 +187,7 @@ form.addEventListener("submit", (e) => {
     dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
         const sectionElement = input.closest(".form-section")?.querySelector("h3");
         if (!sectionElement) {
-            console.error("Section title missing for input:", input);
+            console.warn("Section title missing for input:", input);
             return;
         }
         const section = sectionElement.textContent;
@@ -212,7 +211,8 @@ form.addEventListener("submit", (e) => {
     console.log("Generated Template:", generatedTemplate);
 
     // Display the template output
-    templateOutput.textContent = generatedTemplate;
+    templateOutput.textContent = ""; // Clear previous output
+    templateOutput.textContent = generatedTemplate; // Display new output
 
     // Display success message
     const successMessage = document.createElement("div");
