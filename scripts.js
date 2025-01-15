@@ -45,13 +45,17 @@ document.getElementById("department").addEventListener("change", function () {
         return;
     }
 
-    scriptTag.onload = () => {
-        if (typeof issueTemplates !== "undefined" && Object.keys(issueTemplates).length > 0) {
-            populateIssueTypes();
-        } else {
-            console.error("Failed to load templates for the selected department.");
-        }
-    };
+scriptTag.onload = () => {
+    console.log("Template file loaded successfully.");
+    console.log("Loaded issueTemplates:", window.issueTemplates); // Log the templates
+    if (typeof window.issueTemplates !== "undefined" && Object.keys(window.issueTemplates).length > 0) {
+        issueTemplates = window.issueTemplates; // Assign to global object
+        populateIssueTypes();
+    } else {
+        console.error("Failed to load templates for the selected department.");
+    }
+};
+
 
     scriptTag.onerror = () => {
         console.error(`Failed to load ${scriptTag.src}. Check file path.`);
