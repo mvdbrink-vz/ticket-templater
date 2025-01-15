@@ -6,21 +6,32 @@ const dynamicFieldsDiv = document.getElementById("dynamic-fields");
 const templateOutput = document.getElementById("template-output");
 const summaryOutput = document.getElementById("summary-output");
 const summaryBar = document.getElementById("summary-bar");
+const issueTypeDropdown = document.getElementById("issue-type");
 
-// Update summary bar when issue type or priority changes
+// Initialize Issue Type dropdown as empty
+issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
+
+function populateIssueTypes() {
+    issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
+    for (const type in issueTemplates) {
+        const option = document.createElement("option");
+        option.value = type;
+        option.textContent = type;
+        issueTypeDropdown.appendChild(option);
+    }
+}
+
+// Handle department change to dynamically load templates
 document.getElementById("department").addEventListener("change", function () {
     const department = this.value;
 
-    // Clear previous Issue Type selections
-    const issueTypeDropdown = document.getElementById("issue-type");
+    // Reset dropdowns and templates
     issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
-
-    // Reset global issueTemplates object
     issueTemplates = {};
 
-    // Load the relevant template file dynamically
+    // Load department-specific templates
     let scriptTag = document.getElementById("template-script");
-    if (scriptTag) scriptTag.remove(); // Remove existing script if any
+    if (scriptTag) scriptTag.remove();
 
     scriptTag = document.createElement("script");
     scriptTag.id = "template-script";
@@ -36,25 +47,20 @@ document.getElementById("department").addEventListener("change", function () {
 
     scriptTag.onload = () => {
         if (typeof issueTemplates !== "undefined" && Object.keys(issueTemplates).length > 0) {
-            // Populate Issue Types
-            for (const type in issueTemplates) {
-                const option = document.createElement("option");
-                option.value = type;
-                option.textContent = type;
-                issueTypeDropdown.appendChild(option);
-            }
+            populateIssueTypes();
         } else {
-            console.error("issueTemplates is not defined or empty. Check the template file.");
+            console.error("Failed to load templates for the selected department.");
         }
     };
 
     scriptTag.onerror = () => {
-        console.error(`Failed to load ${scriptTag.src}. Verify the file path.`);
+        console.error(`Failed to load ${scriptTag.src}. Check file path.`);
     };
 
     document.body.appendChild(scriptTag);
 });
 
+// Update summary bar when issue type or priority changes
 document.getElementById("priority").addEventListener("change", updateSummary);
 
 function updateSummary() {
