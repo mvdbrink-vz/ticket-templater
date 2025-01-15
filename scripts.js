@@ -1,3 +1,6 @@
+// Import the validation module
+import { validateInput } from './validation.js';
+
 // The template file location. This is where the templates can be adjusted in an easy way and keep the JSON clean and compact.
 let issueTemplates = {}; // Resettable global object for issue templates
 
@@ -71,7 +74,7 @@ document.getElementById("issue-type").addEventListener("change", updateSummary);
 
 dynamicFieldsDiv.addEventListener("input", (event) => {
     if (event.target.matches("input, textarea")) {
-        updateSummary();
+        validateInput(event.target);
     }
 });
 
@@ -148,63 +151,22 @@ document.getElementById("issue-type").addEventListener("change", function () {
     updateSummary(); // Update summary bar
 });
 
-// Handle form submission
+// Prevent form submission if validation fails
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
     let hasError = false;
 
-    // Validate all inputs again before submission
     dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
-        if (!input.value.trim()) {
+        const error = input.parentElement.querySelector(".error");
+        if (!input.value.trim() || error) {
             hasError = true;
             input.style.borderColor = "red";
         }
     });
 
-    if (hasError) return; // Stop if there are validation errors
-
-    let generatedTemplate = `Priority: ${document.getElementById("priority").value}\n\n`;
-
-    // Group inputs by predefined sections
-    const sections = {
-        "Customer Details": [],
-        "Technical Details": [],
-        "Incident Description": [],
-        "Additional Comments": []
-    };
-
-    dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
-        const section = input.closest(".form-section").querySelector("h3").textContent;
-        const label = input.getAttribute("data-label");
-        const value = input.value;
-
-        if (sections[section]) {
-            sections[section].push(`${label}: ${value}`);
-        }
-    });
-
-    // Construct the template with organized sections
-    Object.keys(sections).forEach(section => {
-        if (sections[section].length > 0) {
-            generatedTemplate += `--- ${section} ---\n`;
-            generatedTemplate += sections[section].join("\n");
-            generatedTemplate += `\n\n`;
-        }
-    });
-
-    // Display template output
-    templateOutput.textContent = generatedTemplate;
-
-    // Display success message
-    const successMessage = document.createElement("div");
-    successMessage.textContent = "Template generated successfully!";
-    successMessage.style.color = "green";
-    document.body.appendChild(successMessage);
-
-    setTimeout(() => {
-        successMessage.remove();
-    }, 3000);
+    if (hasError) {
+        alert("Please fix errors before submitting.");
+        e.preventDefault();
+    }
 });
 
 // **Copy to Clipboard Feature**
