@@ -165,8 +165,57 @@ form.addEventListener("submit", (e) => {
 
     if (hasError) {
         alert("Please fix errors before submitting.");
+        console.log("Form submission blocked due to validation errors.");
         e.preventDefault();
+        return;
     }
+
+    console.log("Form submission passed validation.");
+
+    // Generate the template
+    let generatedTemplate = `Priority: ${document.getElementById("priority").value}\n\n`;
+
+    // Group inputs by predefined sections
+    const sections = {
+        "Customer Details": [],
+        "Technical Details": [],
+        "Incident Description": [],
+        "Additional Comments": []
+    };
+
+    dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
+        const section = input.closest(".form-section").querySelector("h3").textContent;
+        const label = input.getAttribute("data-label");
+        const value = input.value;
+
+        if (sections[section]) {
+            sections[section].push(`${label}: ${value}`);
+        }
+    });
+
+    // Construct the template with organized sections
+    Object.keys(sections).forEach(section => {
+        if (sections[section].length > 0) {
+            generatedTemplate += `--- ${section} ---\n`;
+            generatedTemplate += sections[section].join("\n");
+            generatedTemplate += `\n\n`;
+        }
+    });
+
+    console.log("Generated Template:", generatedTemplate);
+
+    // Display the template output
+    templateOutput.textContent = generatedTemplate;
+
+    // Display success message
+    const successMessage = document.createElement("div");
+    successMessage.textContent = "Template generated successfully!";
+    successMessage.style.color = "green";
+    document.body.appendChild(successMessage);
+
+    setTimeout(() => {
+        successMessage.remove();
+    }, 3000);
 });
 
 // **Copy to Clipboard Feature**
