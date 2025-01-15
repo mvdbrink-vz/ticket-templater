@@ -64,9 +64,7 @@ scriptTag.onload = () => {
     document.body.appendChild(scriptTag);
 });
 
-// Update summary bar when issue type or priority changes
-document.getElementById("priority").addEventListener("change", updateSummary);
-
+// Update summary bar dynamically
 function updateSummary() {
     const priority = document.getElementById("priority").value;
     const issueType = document.getElementById("issue-type").value;
@@ -82,88 +80,18 @@ function updateSummary() {
     summaryOutput.textContent = summaryText;
 }
 
-// Render dynamic fields based on the selected issue type
-document.getElementById("issue-type").addEventListener("change", function () {
-    const issueType = this.value;
-    dynamicFieldsDiv.innerHTML = ""; // Clear previous fields
+// Listen for changes to dynamically update the summary
+document.getElementById("priority").addEventListener("change", updateSummary);
+document.getElementById("issue-type").addEventListener("change", updateSummary);
 
-    if (issueTemplates[issueType]) {
-        const sections = {}; // Group fields by sections
-
-        // Group fields
-        issueTemplates[issueType].forEach(field => {
-            if (!sections[field.section]) {
-                sections[field.section] = [];
-            }
-            sections[field.section].push(field);
-        });
-
-        // Render grouped sections
-        Object.keys(sections).forEach(sectionName => {
-            const sectionDiv = document.createElement("div");
-            sectionDiv.classList.add("form-section");
-            const sectionTitle = document.createElement("h3");
-            sectionTitle.textContent = sectionName;
-            sectionDiv.appendChild(sectionTitle);
-
-            sections[sectionName].forEach(field => {
-                const fieldDiv = document.createElement("div");
-                fieldDiv.classList.add("form-group");
-
-                const label = document.createElement("label");
-                label.textContent = field.label;
-
-                let input;
-                if (field.type === "textarea") {
-                    input = document.createElement("textarea");
-                    input.rows = 4;
-                    input.style.resize = "both";
-                } else {
-                    input = document.createElement("input");
-                    input.type = "text";
-                }
-
-                input.setAttribute("data-label", field.label);
-                input.placeholder = `Enter ${field.label.toLowerCase()}`;
-
-                fieldDiv.appendChild(label);
-                fieldDiv.appendChild(input);
-                sectionDiv.appendChild(fieldDiv);
-            });
-
-            dynamicFieldsDiv.appendChild(sectionDiv); // Add section to form
-        });
-    }
-
-    updateSummary(); // Update summary bar
-});
-
-// Centralize validation using event delegation
+// Add listeners to all dynamically created inputs
 dynamicFieldsDiv.addEventListener("input", (event) => {
     if (event.target.matches("input, textarea")) {
-        const input = event.target;
-        const error = input.parentElement.querySelector(".error");
-
-        // Check if the input is empty
-        if (!input.value.trim()) {
-            input.style.borderColor = "red";
-
-            // Add error message if not present
-            if (!error) {
-                const errorMessage = document.createElement("div");
-                errorMessage.textContent = "This field is required.";
-                errorMessage.style.color = "red";
-                errorMessage.classList.add("error");
-                input.parentElement.appendChild(errorMessage);
-            }
-        } else {
-            input.style.borderColor = ""; // Remove red border
-            if (error) error.remove(); // Remove error message
-        }
+        updateSummary();
     }
 });
 
-// Handle form submission
+// Handle form submission (no changes here)
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
