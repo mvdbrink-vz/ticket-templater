@@ -6,23 +6,24 @@ export const validationRules = {
     ipAddress: /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(\1\.){2}\1$/,
 };
 
+// Validation mapping for specific fields
+const validationMap = {
+    "Technical contact E-mail": "email",
+    "Technical contact phonenumber": "phone",
+    "CM MAC": "macAddress",
+    "IP Address": "ipAddress",
+    "Subnetmasker": "ipAddress",
+    "Gateway": "ipAddress",
+};
+
 // Function to validate a single input
 export function validateInput(input) {
     const error = input.parentElement.querySelector(".error");
-    let validationType;
+    const label = input.getAttribute("data-label");
 
-    // Determine validation type
-    if (input.getAttribute("data-label")?.toLowerCase().includes("email")) {
-        validationType = "email";
-    } else if (input.getAttribute("data-label")?.toLowerCase().includes("phonenumber")) {
-        validationType = "phone";
-    } else if (input.getAttribute("data-label")?.toLowerCase().includes("mac")) {
-        validationType = "macAddress";
-    } else if (input.getAttribute("data-label")?.toLowerCase().includes("ip")) {
-        validationType = "ipAddress";
-    }
+    // Get the validation type from the map
+    const validationType = validationMap[label];
 
-    // Perform validation
     if (validationType && validationRules[validationType]) {
         const isValid = validationRules[validationType].test(input.value);
         if (!isValid) {
