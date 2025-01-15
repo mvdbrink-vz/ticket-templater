@@ -1,4 +1,4 @@
-const issueTemplates = {
+window.issueTemplates = {
     "Data - Speed Issues": [
         // Customer Details
         { label: "Access ID:", type: "input", section: "Customer Details" },
