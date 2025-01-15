@@ -17,29 +17,19 @@
 </div>
 
 <div class="top-bar">
-<div>
-    <label for="department">Select Department:</label>
-    <select id="department" required>
-        <option value="">-- Select Department --</option>
-        <option value="tech-services-small">Tech Services Small</option>
-        <option value="2nd-line-b2b">2nd Line B2B</option>
-    </select>
-</div>
+    <div>
+        <label for="department">Select Department:</label>
+        <select id="department" required>
+            <option value="">-- Select Department --</option>
+            <option value="tech-services-small">Tech Services Small</option>
+            <option value="2nd-line-b2b">2nd Line B2B</option>
+        </select>
+    </div>
     <div>
         <label for="issue-type">Select Issue Type:</label>
         <select id="issue-type" aria-label="Select an Issue Type" required>
             <option value="">-- Select --</option>
-            <option value="MultiWifi - Hinder">MultiWifi - Hinder</option>
-            <option value="MultiWifi - No Connection">MultiWifi - No Connection</option>
-            <option value="Telefonie - Feature Issues">Telephony - Feature Issues</option>
-            <option value="Telefonie - No in- or outgoing calls">Telephony - No In/Out Calls</option>
-            <option value="Telefonie - One way audio">Telephony - One Way Audio</option>
-            <option value="Telefonie - Quality issues">Telephony - Quality Issues</option>
-            <option value="Data - No Connection">Data - No Connection</option>
-            <option value="Data - Packetloss">Data - Packetloss</option>
-            <option value="Data - Performance Issue">Data - Performance Issue</option>
-            <option value="Data - Reachability IP">Data - Reachability IP</option>
-            <option value="Data - Speed Issues">Data - Speed Issues</option>
+            <!-- Issue types are populated dynamically -->
         </select>
     </div>
     <div>
@@ -60,7 +50,7 @@
             <div id="dynamic-fields">
                 <!-- Dynamic fields will be inserted here based on issue type -->
             </div>
-            <button type="submit">Generate Template</button>
+            <button type="button" id="generate-template">Generate Template</button>
         </form>
     </div>
     <div class="output-section">
