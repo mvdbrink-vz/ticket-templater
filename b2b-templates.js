@@ -1,3 +1,4 @@
+console.log("b2b-templates.js loaded");
 window.issueTemplates = {
     "Data - Speed Issues": [
         // Customer Details
