@@ -1,3 +1,4 @@
+console.log("small-templates.js loaded");
 window.issueTemplates = {
     "MultiWifi - Hinder": [
          // Customer Details
