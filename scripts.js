@@ -54,9 +54,14 @@ document.getElementById("department").addEventListener("change", function () {
     console.log(`Loading template file: ${scriptTag.src}`); // Debug log
 
     scriptTag.onload = () => {
-        console.log("Template file loaded successfully."); // Debug log
-        populateIssueTypes();
-    };
+        console.log("Template file loaded successfully.");
+        if (typeof issueTemplates !== "undefined" && Object.keys(issueTemplates).length > 0) {
+            populateIssueTypes();
+        } else {
+            console.error("Templates not found. Ensure the template file defines `issueTemplates` as a global variable.");
+        }
+};
+
 
     scriptTag.onerror = () => {
         console.error(`Failed to load ${scriptTag.src}. Check the file path.`);
