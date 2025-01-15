@@ -152,11 +152,12 @@ document.getElementById("issue-type").addEventListener("change", function () {
 });
 
 // Prevent form submission if validation fails
-orm.addEventListener("submit", (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
     let hasError = false;
 
+    // Validate all fields
     dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
         const error = input.parentElement.querySelector(".error");
         if (!input.value.trim() || error) {
@@ -185,7 +186,12 @@ orm.addEventListener("submit", (e) => {
     };
 
     dynamicFieldsDiv.querySelectorAll("input, textarea").forEach(input => {
-        const section = input.closest(".form-section").querySelector("h3").textContent;
+        const sectionElement = input.closest(".form-section")?.querySelector("h3");
+        if (!sectionElement) {
+            console.error("Section title missing for input:", input);
+            return;
+        }
+        const section = sectionElement.textContent;
         const label = input.getAttribute("data-label");
         const value = input.value;
 
@@ -218,6 +224,7 @@ orm.addEventListener("submit", (e) => {
         successMessage.remove();
     }, 3000);
 });
+
 
 // **Copy to Clipboard Feature**
 const copyButton = document.createElement("button");
