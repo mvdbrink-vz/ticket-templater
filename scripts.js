@@ -10,14 +10,20 @@ const issueTypeDropdown = document.getElementById("issue-type");
 
 // Initialize Issue Type dropdown as empty
 issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
+issueTemplates = {}; // Start with an empty object
 
 function populateIssueTypes() {
+    console.log("Populating Issue Types..."); // Debug log
     issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
-    for (const type in issueTemplates) {
-        const option = document.createElement("option");
-        option.value = type;
-        option.textContent = type;
-        issueTypeDropdown.appendChild(option);
+    if (typeof issueTemplates !== "undefined" && Object.keys(issueTemplates).length > 0) {
+        for (const type in issueTemplates) {
+            const option = document.createElement("option");
+            option.value = type;
+            option.textContent = type;
+            issueTypeDropdown.appendChild(option);
+        }
+    } else {
+        console.warn("No templates available to populate Issue Types.");
     }
 }
 
@@ -27,7 +33,7 @@ document.getElementById("department").addEventListener("change", function () {
 
     // Reset dropdowns and templates
     issueTypeDropdown.innerHTML = "<option value=''>-- Select Issue Type --</option>";
-    issueTemplates = {};
+    issueTemplates = {}; // Reset global object
 
     // Load department-specific templates
     let scriptTag = document.getElementById("template-script");
@@ -45,16 +51,15 @@ document.getElementById("department").addEventListener("change", function () {
         return;
     }
 
+    console.log(`Loading template file: ${scriptTag.src}`); // Debug log
+
     scriptTag.onload = () => {
-        if (typeof issueTemplates !== "undefined" && Object.keys(issueTemplates).length > 0) {
-            populateIssueTypes();
-        } else {
-            console.error("Failed to load templates for the selected department.");
-        }
+        console.log("Template file loaded successfully."); // Debug log
+        populateIssueTypes();
     };
 
     scriptTag.onerror = () => {
-        console.error(`Failed to load ${scriptTag.src}. Check file path.`);
+        console.error(`Failed to load ${scriptTag.src}. Check the file path.`);
     };
 
     document.body.appendChild(scriptTag);
