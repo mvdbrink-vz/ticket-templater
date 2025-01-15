@@ -26,6 +26,10 @@ styles.css:
 
 Defines the styling for the application.
 Handles responsive design, dropdowns, buttons, summary bar, and form layout.
+
+
+
+
 2. Workflow
 Department Selection:
 
@@ -40,6 +44,10 @@ As inputs are filled, the summary bar (Priority || Customer || Access ID || Issu
 Template Generation:
 
 Clicking the Generate Template button validates the inputs and generates a formatted output grouped by sections.
+
+
+
+
 3. Key Features
 Dynamic Template Loading:
 
@@ -53,6 +61,10 @@ The summary bar reflects user inputs in real-time.
 Validation:
 
 All required fields are validated before generating the template.
+
+
+
+
 4. Example Files
 small-templates.js
 javascript
@@ -81,6 +93,10 @@ This file:
 
 Handles department selection, template loading, form rendering, summary updates, and template generation.
 Validates and organizes data dynamically.
+
+
+
+
 5. Improvements Added
 Modular Structure:
 Templates are separated by department for easy management.
