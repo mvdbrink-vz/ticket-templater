@@ -1,0 +1,365 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.banner {
+    text-align: center;
+    background: linear-gradient(90deg, red, orange);
+    padding: 10px 0;
+}
+
+.banner img.logo-banner {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px; /* Adjust based on the logo size */
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    gap: 20px; /* Add spacing between elements */
+    background: linear-gradient(to right, #2c2c2c, #333);
+    padding: 15px;
+    color: white;
+    border-bottom: 3px solid orange;
+}
+
+.top-bar select {
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+    transition: all 0.3s ease;
+}
+
+.top-bar select:hover {
+    background-color: #505050;
+    border-color: #666;
+}
+
+.top-bar label {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.summary-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-bottom: 2px solid orange;
+    padding: 12px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.summary-bar:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, red, orange);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.summary-bar input {
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #333;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    cursor: text;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto 80px;
+    background: linear-gradient(to bottom right, white, #f8f8f8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 25px;
+}
+
+.form-section {
+    flex: 1;
+}
+
+.output-section {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 0 10px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-size: 12px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 5px 0;
+}
+
+.form-group label {
+    flex: 1;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+.form-group input, .form-group textarea {
+    flex: 2;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: both;
+    min-height: 80px;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: orange;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
+    outline: none;
+}
+
+button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: orange;
+}
+
+button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, .5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to right, #2c2c2c, #333);
+    border-top: 2px solid orange;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.incident-summary {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    background: linear-gradient(to right, #f8f8f8, #fff);
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.incident-summary h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.incident-summary p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.template-output {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 0;
+    white-space: pre-wrap;
+    transition: box-shadow 0.3s;
+    background: linear-gradient(to bottom, #fff, #f9f9f9);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.template-output h2 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.template-output .section-title {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.form-section h3 {
+    color: #333;
+    font-size: 14px;
+    border-bottom: 2px solid orange;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.output-section h2 {
+    color: #333;
+    border-bottom: 2px solid orange;
+    padding: 10px 0 5px 0;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+/* Add hover effects */
+.form-group input:hover, .form-group textarea:hover {
+    border-color: #999;
+}
+
+select:hover {
+    background-color: #f5f5f5;
+}
+
+.template-output:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for action buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.copy-btn, .save-btn {
+    background-color: #666;
+    padding: 8px 15px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.copy-btn:hover, .save-btn:hover {
+    background-color: #888;
+}
+
+button[type="submit"] {
+    background: linear-gradient(45deg, red, orange);
+    background-size: 200% 200%;
+    animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.export-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.export-buttons button {
+    background: linear-gradient(45deg, #666, #888);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.export-buttons button:hover {
+    background: linear-gradient(45deg, #888, #999);
+    transform: translateY(-1px);
+}
+
+/* Add validation error styling */
+.form-group input.error, .form-group textarea.error {
+    border-color: #ff4444;
+    background-color: #fff8f8;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+.form-group input.error + .error-message,
+.form-group textarea.error + .error-message {
+    display: block;
+}
