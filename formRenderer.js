@@ -25,8 +25,13 @@ export function renderFormFields(templates, issueType, container) {
                 const fieldDiv = document.createElement("div");
                 fieldDiv.classList.add("form-group");
 
+                // Create unique ID for the field
+                const fieldId = `${sectionName.toLowerCase().replace(/\s+/g, '-')}-${field.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
                 const label = document.createElement("label");
                 label.textContent = field.label;
+                label.setAttribute('for', fieldId);  // Associate label with input
+                
                 if (field.required !== false) {
                     const required = document.createElement("span");
                     required.textContent = " *";
@@ -35,9 +40,9 @@ export function renderFormFields(templates, issueType, container) {
                 }
 
                 let input;
-                if (field.type === "select" && field.options) {  // Check for both type and options
+                if (field.type === "select" && field.options) {
                     input = document.createElement("select");
-                    input.classList.add("form-select");  // Add class for styling
+                    input.classList.add("form-select");
                     
                     // Add default empty option
                     const defaultOption = document.createElement("option");
@@ -61,6 +66,8 @@ export function renderFormFields(templates, issueType, container) {
                     input.type = "text";
                 }
 
+                // Set the ID on the input element
+                input.id = fieldId;
                 input.setAttribute("data-label", field.label);
                 input.setAttribute("data-section", sectionName);
                 if (field.type !== "select") {
