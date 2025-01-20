@@ -1,11 +1,15 @@
 export function renderFormFields(templates, issueType, container) {
     container.innerHTML = ""; // Clear previous fields
+    
+    console.log("Templates:", templates);
+    console.log("Issue Type:", issueType);
 
     if (templates[issueType]) {
         const sections = {};
 
         // Group fields by section
         templates[issueType].forEach(field => {
+            console.log("Processing field:", field); // Debug log
             if (!sections[field.section]) {
                 sections[field.section] = [];
             }
@@ -14,6 +18,7 @@ export function renderFormFields(templates, issueType, container) {
 
         // Render grouped sections
         Object.keys(sections).forEach(sectionName => {
+            console.log("Rendering section:", sectionName); // Debug log
             const sectionDiv = document.createElement("div");
             sectionDiv.classList.add("form-section");
 
@@ -22,13 +27,14 @@ export function renderFormFields(templates, issueType, container) {
             sectionDiv.appendChild(sectionTitle);
 
             sections[sectionName].forEach(field => {
+                console.log("Creating field:", field.label, "Type:", field.type); // Debug log
                 const fieldDiv = document.createElement("div");
                 fieldDiv.classList.add("form-group");
 
-                // Create unique ID for the field
                 let fieldId;
                 if (field.label === "Service Type:") {
-                    fieldId = "service-type"; // Fixed ID for service type
+                    fieldId = "service-type";
+                    console.log("Creating service type dropdown with ID:", fieldId); // Debug log
                 } else {
                     fieldId = `${sectionName.toLowerCase().replace(/\s+/g, '-')}-${field.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
                 }
@@ -36,7 +42,7 @@ export function renderFormFields(templates, issueType, container) {
                 const label = document.createElement("label");
                 label.textContent = field.label;
                 label.setAttribute('for', fieldId);
-                
+
                 if (field.required !== false) {
                     const required = document.createElement("span");
                     required.textContent = " *";
@@ -46,6 +52,7 @@ export function renderFormFields(templates, issueType, container) {
 
                 let input;
                 if (field.type === "select" && field.options) {
+                    console.log("Creating select element for:", field.label, "with options:", field.options); // Debug log
                     input = document.createElement("select");
                     input.classList.add("form-select");
                     
@@ -82,9 +89,8 @@ export function renderFormFields(templates, issueType, container) {
                 fieldDiv.appendChild(input);
                 sectionDiv.appendChild(fieldDiv);
 
-                // Debug log for service type field
                 if (field.label === "Service Type:") {
-                    console.log("Service Type dropdown created with ID:", fieldId);
+                    console.log("Service Type dropdown rendered:", input.outerHTML); // Debug log
                 }
             });
 
