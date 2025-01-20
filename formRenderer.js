@@ -26,11 +26,16 @@ export function renderFormFields(templates, issueType, container) {
                 fieldDiv.classList.add("form-group");
 
                 // Create unique ID for the field
-                const fieldId = `${sectionName.toLowerCase().replace(/\s+/g, '-')}-${field.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+                let fieldId;
+                if (field.label === "Service Type:") {
+                    fieldId = "service-type"; // Fixed ID for service type
+                } else {
+                    fieldId = `${sectionName.toLowerCase().replace(/\s+/g, '-')}-${field.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+                }
 
                 const label = document.createElement("label");
                 label.textContent = field.label;
-                label.setAttribute('for', fieldId);  // Associate label with input
+                label.setAttribute('for', fieldId);
                 
                 if (field.required !== false) {
                     const required = document.createElement("span");
@@ -66,7 +71,6 @@ export function renderFormFields(templates, issueType, container) {
                     input.type = "text";
                 }
 
-                // Set the ID on the input element
                 input.id = fieldId;
                 input.setAttribute("data-label", field.label);
                 input.setAttribute("data-section", sectionName);
@@ -77,6 +81,11 @@ export function renderFormFields(templates, issueType, container) {
                 fieldDiv.appendChild(label);
                 fieldDiv.appendChild(input);
                 sectionDiv.appendChild(fieldDiv);
+
+                // Debug log for service type field
+                if (field.label === "Service Type:") {
+                    console.log("Service Type dropdown created with ID:", fieldId);
+                }
             });
 
             container.appendChild(sectionDiv);

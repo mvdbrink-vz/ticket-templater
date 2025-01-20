@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const issueTypeDropdown = document.getElementById("issue-type");
     const departmentSelect = document.getElementById("department");
     const prioritySelect = document.getElementById("priority");
-    const serviceTypeSelect = document.getElementById("service-type");
 
     // Log DOM elements status
     console.log("📝 DOM Elements loaded:", {
@@ -25,8 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         summaryBar: !!summaryBar,
         issueType: !!issueTypeDropdown,
         department: !!departmentSelect,
-        priority: !!prioritySelect,
-        serviceType: !!serviceTypeSelect
+        priority: !!prioritySelect
     });
 
     let issueTemplates = {};
@@ -84,18 +82,19 @@ document.addEventListener("DOMContentLoaded", () => {
         summaryOutput.textContent = summaryText;
     }
 
-    issueTypeDropdown.addEventListener("change", function () {
-        const issueType = this.value;
-        renderFormFields(issueTemplates, issueType, dynamicFieldsDiv);
-        updateSummary();
-
-        // Add test button only if not already present
-        if (!document.getElementById('fill-test-data')) {
-            const testBtn = document.createElement('button');
-            testBtn.id = 'fill-test-data';
-            testBtn.textContent = 'Fill Test Data';
-            testBtn.onclick = fillTestData;
-            document.querySelector('.form-section').appendChild(testBtn);
+    issueTypeDropdown.addEventListener("change", function() {
+        const selectedType = this.value;
+        if (selectedType) {
+            renderFormFields(issueTemplates, selectedType, dynamicFieldsDiv);
+            
+            // Get service type select after form is rendered
+            const serviceTypeSelect = document.getElementById("service-type");
+            if (serviceTypeSelect) {
+                serviceTypeSelect.addEventListener("change", function() {
+                    console.log("Service type changed to:", this.value);
+                    updateSummary();
+                });
+            }
         }
     });
 
