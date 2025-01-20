@@ -27,7 +27,7 @@ export function renderFormFields(templates, issueType, container) {
 
                 const label = document.createElement("label");
                 label.textContent = field.label;
-                if (field.required !== false) { // All fields required by default
+                if (field.required !== false) {
                     const required = document.createElement("span");
                     required.textContent = " *";
                     required.className = "required";
@@ -35,17 +35,16 @@ export function renderFormFields(templates, issueType, container) {
                 }
 
                 let input;
-                if (field.type === "textarea") {
-                    input = document.createElement("textarea");
-                    input.rows = 4;
-                    input.style.resize = "both";
-                } else if (field.type === "select") {
+                if (field.type === "select" && field.options) {  // Check for both type and options
                     input = document.createElement("select");
+                    input.classList.add("form-select");  // Add class for styling
+                    
                     // Add default empty option
                     const defaultOption = document.createElement("option");
                     defaultOption.value = "";
                     defaultOption.textContent = `-- Select ${field.label.replace(':', '')} --`;
                     input.appendChild(defaultOption);
+                    
                     // Add options from field definition
                     field.options.forEach(optionText => {
                         const option = document.createElement("option");
@@ -53,6 +52,10 @@ export function renderFormFields(templates, issueType, container) {
                         option.textContent = optionText;
                         input.appendChild(option);
                     });
+                } else if (field.type === "textarea") {
+                    input = document.createElement("textarea");
+                    input.rows = 4;
+                    input.style.resize = "both";
                 } else {
                     input = document.createElement("input");
                     input.type = "text";

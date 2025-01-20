@@ -363,3 +363,22 @@ button[type="submit"] {
 .form-group textarea.error + .error-message {
     display: block;
 }
+
+.form-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: white;
+}
+
+.form-select:focus {
+    border-color: orange;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
+    outline: none;
+}
+
+.form-select option {
+    padding: 8px;
+}
