@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const issueTypeDropdown = document.getElementById("issue-type");
     const departmentSelect = document.getElementById("department");
     const prioritySelect = document.getElementById("priority");
+    const serviceTypeSelect = document.getElementById("service-type");
 
     // Log DOM elements status
     console.log("📝 DOM Elements loaded:", {
@@ -24,7 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
         summaryBar: !!summaryBar,
         issueType: !!issueTypeDropdown,
         department: !!departmentSelect,
-        priority: !!prioritySelect
+        priority: !!prioritySelect,
+        serviceType: !!serviceTypeSelect
     });
 
     let issueTemplates = {};
