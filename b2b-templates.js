@@ -12,35 +12,33 @@ const commonCustomerDetails = [
     { label: "Technical contact E-mail:", type: "input", section: "Customer Details" }
 ];
 
-// Modify serviceSection to use type "select"
-const serviceSection = [
-    {
-        label: "Service Type:",
-        type: "select",
-        options: [
-            "Carrier Ethernet",
-            "Ethernet Link",
-            "Ethernet Transport (HFC)",
-            "Leased Line",
-            "Dark Fiber",
-            "MultiWIFI",
-            "DTV",
-            "Internet Pro",
-            "IPVPN",
-            "IPVPN (HFC)",
-            "Wholesale Voip",
-            "SIP/Voip",
-            "Hosting"
-        ],
-        section: "Service",
-        required: true
-    }
-];
+// Define the service field (not as an array)
+const serviceField = {
+    label: "Service Type:",
+    type: "select",
+    options: [
+        "Carrier Ethernet",
+        "Ethernet Link",
+        "Ethernet Transport (HFC)",
+        "Leased Line",
+        "Dark Fiber",
+        "MultiWIFI",
+        "DTV",
+        "Internet Pro",
+        "IPVPN",
+        "IPVPN (HFC)",
+        "Wholesale Voip",
+        "SIP/Voip",
+        "Hosting"
+    ],
+    section: "Service",
+    required: true
+};
 
 window.issueTemplates = {
     "Data - Connection Down": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,  // Include as single object, not spread
         // Technical Details
         { label: "CM MAC:", type: "input", section: "Technical Details" },
         { label: "Gateway:", type: "input", section: "Technical Details" },
@@ -59,7 +57,7 @@ window.issueTemplates = {
 
     "Data - Performance Issue": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "CM MAC:", type: "input", section: "Technical Details" },
         { label: "Gateway:", type: "input", section: "Technical Details" },
@@ -77,7 +75,7 @@ window.issueTemplates = {
     // Continue with other templates...
     "Voice - Feature Issue": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "SIPEU:", type: "input", section: "Technical Details" },
         { label: "Feature affected:", type: "input", section: "Technical Details" },
@@ -93,7 +91,7 @@ window.issueTemplates = {
 
     "Data - Packetloss": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "CM MAC or CPE Name:", type: "input", section: "Technical Details" },
         { label: "IP Address:", type: "input", section: "Technical Details" },
@@ -113,7 +111,7 @@ window.issueTemplates = {
 
     "Data - Reachability IP": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "IP address impacted:", type: "input", section: "Technical Details" },
         { label: "Source IP:", type: "input", section: "Technical Details" },
@@ -130,7 +128,7 @@ window.issueTemplates = {
 
     "Voice - One Way Audio": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "SIPEU:", type: "input", section: "Technical Details" },
         { label: "A-Number:", type: "input", section: "Technical Details" },
@@ -148,7 +146,7 @@ window.issueTemplates = {
 
     "Voice - Quality Issues": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "SIPEU:", type: "input", section: "Technical Details" },
         { label: "Affected phone numbers:", type: "input", section: "Technical Details" },
@@ -171,7 +169,7 @@ window.issueTemplates = {
 
     "Voice - No in- or outgoing calls": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "SIPEU:", type: "input", section: "Technical Details" },
         { label: "Affected phone numbers:", type: "input", section: "Technical Details" },
@@ -192,7 +190,7 @@ window.issueTemplates = {
 
     "Voice - Number Porting": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "SIPEU:", type: "input", section: "Technical Details" },
         { label: "Numbers to port:", type: "textarea", section: "Technical Details" },
@@ -208,7 +206,7 @@ window.issueTemplates = {
 
     "Voice - CCS": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "SIPEU:", type: "input", section: "Technical Details" },
         { label: "CCS environment:", type: "input", section: "Technical Details" },
@@ -225,7 +223,7 @@ window.issueTemplates = {
 
     "MultiWifi - No Connection": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "MultiWifi ID:", type: "input", section: "Technical Details" },
         { label: "CM MAC:", type: "input", section: "Technical Details" },
@@ -243,7 +241,7 @@ window.issueTemplates = {
 
     "MultiWifi - Performance Issue": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "MultiWifi ID:", type: "input", section: "Technical Details" },
         { label: "Affected AP MAC addresses:", type: "textarea", section: "Technical Details" },
@@ -261,7 +259,7 @@ window.issueTemplates = {
 
     "MultiWifi - Modifying AP configuration": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "MultiWifi ID:", type: "input", section: "Technical Details" },
         { label: "AP MAC addresses:", type: "textarea", section: "Technical Details" },
@@ -276,7 +274,7 @@ window.issueTemplates = {
 
     "MultiWifi - Swap AP Hardware": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "MultiWifi ID:", type: "input", section: "Technical Details" },
         { label: "Faulty AP MAC:", type: "input", section: "Technical Details" },
@@ -292,7 +290,7 @@ window.issueTemplates = {
 
     "Problem - New Problem ticket": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Technical Details
         { label: "Related incident tickets:", type: "textarea", section: "Technical Details" },
         { label: "Affected systems:", type: "textarea", section: "Technical Details" },
@@ -308,7 +306,7 @@ window.issueTemplates = {
 
     "Change - New Change Ticket": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Change Details
         { label: "Change type:", type: "select", section: "Change Details", options: [
             "Standard",
@@ -327,7 +325,7 @@ window.issueTemplates = {
 
     "Major Incident - New Major Incident": [
         ...commonCustomerDetails,
-        ...serviceSection,
+        serviceField,
         // Incident Details
         { label: "Severity level:", type: "select", section: "Incident Details", options: [
             "Critical",
