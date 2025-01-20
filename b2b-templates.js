@@ -12,7 +12,7 @@ const commonCustomerDetails = [
     { label: "Technical contact E-mail:", type: "input", section: "Customer Details" }
 ];
 
-// Define service dropdown
+// Modify serviceSection to use type "select"
 const serviceSection = [
     {
         label: "Service Type:",
@@ -32,7 +32,8 @@ const serviceSection = [
             "SIP/Voip",
             "Hosting"
         ],
-        section: "Service"
+        section: "Service",
+        required: true
     }
 ];
 

@@ -39,6 +39,20 @@ export function renderFormFields(templates, issueType, container) {
                     input = document.createElement("textarea");
                     input.rows = 4;
                     input.style.resize = "both";
+                } else if (field.type === "select") {
+                    input = document.createElement("select");
+                    // Add default empty option
+                    const defaultOption = document.createElement("option");
+                    defaultOption.value = "";
+                    defaultOption.textContent = `-- Select ${field.label.replace(':', '')} --`;
+                    input.appendChild(defaultOption);
+                    // Add options from field definition
+                    field.options.forEach(optionText => {
+                        const option = document.createElement("option");
+                        option.value = optionText;
+                        option.textContent = optionText;
+                        input.appendChild(option);
+                    });
                 } else {
                     input = document.createElement("input");
                     input.type = "text";
@@ -46,7 +60,9 @@ export function renderFormFields(templates, issueType, container) {
 
                 input.setAttribute("data-label", field.label);
                 input.setAttribute("data-section", sectionName);
-                input.placeholder = `Enter ${field.label.toLowerCase()}`;
+                if (field.type !== "select") {
+                    input.placeholder = `Enter ${field.label.toLowerCase()}`;
+                }
 
                 fieldDiv.appendChild(label);
                 fieldDiv.appendChild(input);
