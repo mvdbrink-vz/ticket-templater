@@ -371,14 +371,25 @@ button[type="submit"] {
     border-radius: 4px;
     font-size: 12px;
     background-color: white;
+    height: 35px; /* Explicit height */
+    -webkit-appearance: menulist; /* For Safari */
+    -moz-appearance: menulist; /* For Firefox */
+    appearance: menulist; /* Standard */
 }
 
 .form-select:focus {
     border-color: orange;
-    box-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
     outline: none;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
 }
 
 .form-select option {
     padding: 8px;
+    font-size: 12px;
+}
+
+/* Style for the select container */
+.form-group select {
+    display: block;
+    width: 100%;
 }

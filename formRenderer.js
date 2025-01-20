@@ -1,5 +1,7 @@
 export function renderFormFields(templates, issueType, container) {
     container.innerHTML = ""; // Clear previous fields
+    
+    console.log("Rendering template for:", issueType); // Debug log
 
     if (templates[issueType]) {
         const sections = {};
@@ -10,6 +12,11 @@ export function renderFormFields(templates, issueType, container) {
                 sections[field.section] = [];
             }
             sections[field.section].push(field);
+            
+            // Debug log for select fields
+            if (field.type === "select") {
+                console.log("Found select field:", field);
+            }
         });
 
         // Render grouped sections
@@ -35,9 +42,10 @@ export function renderFormFields(templates, issueType, container) {
                 }
 
                 let input;
-                if (field.type === "select" && field.options) {  // Check for both type and options
+                if (field.type === "select" && Array.isArray(field.options)) {
+                    console.log("Creating select element for:", field.label); // Debug log
                     input = document.createElement("select");
-                    input.classList.add("form-select");  // Add class for styling
+                    input.classList.add("form-select");
                     
                     // Add default empty option
                     const defaultOption = document.createElement("option");
